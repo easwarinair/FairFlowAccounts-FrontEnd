@@ -1,14 +1,16 @@
 .container {
   display: flex;
-  height: 100vh;
+  height: 100dvh;
   width: 100vw;
 }
 
 .left-panel {
   background-color: #e3d9df;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-left: 20px;
 }
 
 .mag {
@@ -19,8 +21,6 @@
   font-style: normal;
   font-weight: 800;
   line-height: normal;
-  margin-top: 100px;
-  margin-right: 200px;
 }
 
 .black {
@@ -35,7 +35,7 @@
 
 .right-panel {
   background-color: #e3d9df;
-  flex: 679px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,10 +59,11 @@
   align-items: center;
 }
 
-input{
+input {
   padding: 10px;
   margin: 10px;
   width: 250px;
+  border-radius: 10px;
 }
 
 button {
@@ -86,7 +87,6 @@ button:hover {
 
 .block {
   background-color: #ca047b;
-  margin-bottom: 0px;
   margin-left: 5px;
   width: 150px;
   height: 150px;
@@ -101,7 +101,6 @@ button:hover {
     #975b7f 74.98%
   );
   box-shadow: 4px 8px 14.4px 0px rgba(0, 0, 0, 0.18);
-  margin-top: 200px;
 }
 
 .password-form {

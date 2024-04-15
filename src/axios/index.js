@@ -10,3 +10,4 @@ const api = axios.create({
 
 
 export const LoginAPICall = (data) => api.post("/login", data)
+export const ProjectStatusAPICall = () => api.get("/project/status")
