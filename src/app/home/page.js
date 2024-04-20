@@ -1,7 +1,32 @@
 "use client"
 import "./home.css"
+import { useEffect, useState } from "react";
 
 export default function Page() {
+
+  const [statuses, setStatuses] = useState(null);
+  const [projectTitle, setProjectTitle] = useState('');
+  const [loading, setLoading] = useState("loading");
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading("loading");
+        const res = await ProjectStatusAPICall();
+        if (res.status === 200 && res.data.result) {
+          setLoading("success");  
+          setProjectTitle(res.data.result[0].projectTitle);
+          setStatuses(res.data.result);
+        } else setLoading("error");
+      } catch (err) {
+        console.log(err);
+        setLoading("error");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  console.log(statuses);
   return (
     <>
       <header className="header">
@@ -25,7 +50,7 @@ export default function Page() {
       </header>
       <main>
         <h1 className="project-title">
-          Lecture Hall Complex Construction, RIT Kottayam
+          {projectTitle || "Loading..."}
         </h1>
         <div className="project-details">
           <span>Progress</span>
