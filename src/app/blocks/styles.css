@@ -58,6 +58,7 @@ outline: none;
             display: flex;
             gap: 20px; 
             margin-top: 20px;
+          
              
         }
 
@@ -72,7 +73,13 @@ outline: none;
             background: radial-gradient(116.04% 133.12% at 50% 27.34%, rgba(229, 110, 182, 0.81) 0%, rgba(202, 84, 155, 0.81) 24.87%, rgba(183, 80, 142, 0.81) 50.17%, #975B7F 74.98%);
             box-shadow: 4px 8px 14.4px 0px rgba(0, 0, 0, 0.18);
             
+            
         }
+    /*.block-connector{
+            width: 50px;
+            height: 1px;
+            border:3px solid rgba(149, 15, 95, 0.38999998569488525);
+        }*/
 
     .block-heading {
             color: #000;
