@@ -128,7 +128,7 @@ export default function Page() {
           <span>Receiver ID</span>
           <span>Timestamp</span>
         </div>
-        <div className="transaction-details_1">
+        <div >
         {renderTransactions()} </div>
           
       </main>
