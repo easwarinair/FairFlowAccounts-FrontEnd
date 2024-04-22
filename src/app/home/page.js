@@ -1,11 +1,6 @@
 "use client";
 import "./home.css";
 import { useEffect, useState } from "react";
-import path from "path";
-import dotenv from "dotenv";
-dotenv.config({
-  path: path.join(__dirname, "..", "..", ".env.local"),
-});
 
 export default function Page() {
   const [blockCount, setBlockCount] = useState(0);
