@@ -41,10 +41,7 @@ export default function Page() {
           </a>
         </div>
         <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Search transactions by block number, date, or more..."
-          />
+        <input type="text" style={{ fontWeight: 'bold' }} placeholder="Search transactions by block number, date, or more..." />
         </div>
       </header>
       <main>
@@ -59,18 +56,21 @@ export default function Page() {
           </h3>
         </div>
 
-        <div className="profile_status">
-          {loading === "loading" && <p>loading...</p>}
-          {loading === "error" && <p>error...</p>}
-          {loading === "success" && statuses.length === 0 && <div>No statuses</div>}
-          {loading === "success" && statuses.length > 0 && (
-            <div>
-              {statuses.map((status, index) => {
-                return <p key={index}>{status}</p>;
-              })}
-            </div>
-          )}
-        </div>
+        {
+  /* <div className="profile_status">
+    {loading === "loading" && <p>loading...</p>}
+    {loading === "error" && <p>error...</p>}
+    {loading === "success" && statuses.length === 0 && <div>No statuses</div>}
+    {loading === "success" && statuses.length > 0 && (
+      <div>
+        {statuses.map((status, index) => {
+          return <p key={index}>{status}</p>;
+        })}
+      </div>
+    )}
+  </div> */
+}
+
       </main>
     </>
   );
