@@ -57,8 +57,8 @@ export default function Page() {
   const renderTransactions = () => {
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
-        <span>{i + 1}</span> {/* Block number */}
-        <span>Rs {Math.random() * 100000}</span> {/* Dummy amount */}
+        <span>{i + 1}</span> 
+        <span>Rs {Math.random() * 100000}</span>
         <span>
           <a href="profiles/sender.html" className="profile-link">
             <u>@senderId</u>
@@ -69,7 +69,7 @@ export default function Page() {
             <u>@receiverId</u>
           </a>
         </span>
-        <span>{new Date().toLocaleString()}</span> {/* Dummy timestamp */}
+        <span>{new Date().toLocaleString()}</span> 
       </div>
     ));
   };
