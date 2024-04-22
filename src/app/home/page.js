@@ -78,37 +78,42 @@ export default function Page() {
 
   return (
     <>
-      <header className="header">
-        <div className="logo">
-          <span className="mag">FairFlow</span><br />
-          <span className="black">Accounts</span>
-        </div>
-        <div className="search-bar">
-          <input type="text" placeholder="Search transactions by block number, date, or more..." />
-        </div>
-        <div className="login-button">
-          <a href="/login">
-            <button>Login</button>
-          </a>
-        </div>
-      </header>
+     <header className="header">
+      
+  <div className="header-container">
+    <div className="logo">
+      <span className="mag">FairFlow</span><br />
+      <span className="black">Accounts</span>
+    </div>
+    <div className="search-bar">
+      <input type="text" style={{ fontWeight: 'bold' }} placeholder="Search transactions by block number, date, or more..." />
+    </div>
+    <div className="login-button">
+  <a href="/login">
+    <button style={{ color: 'white' }}>Login</button>
+  </a>
+</div>
+  </div>
+</header>
       <main>
       <h1 className="project-title">{error ? `Error: ${error}` : projectTitle || "Loading project..."}</h1>
 
 </main>
 <main>
-        <div className="project-details">
-          <span>Progress</span>
-          <span>Current Expenditure</span>
-          <span>Expected Cost</span>
-          <span>Latest Update</span>
-        </div>
-        <div className="project-details_1">
-          <span>63%</span>
-          <span>2.85 Cr</span>
-          <span>6 Cr</span>
-          <span>Phase 5/8</span>
-        </div>
+<div className="project-details-container">
+  <div className="project-details">
+    <span>Progress</span>
+    <span>Current Expenditure</span>
+    <span>Expected Cost</span>
+    <span>Latest Update</span>
+  </div>
+  <div className="project-details_1">
+    <span>63%</span>
+    <span>2.85 Cr</span>
+    <span>6 Cr</span>
+    <span>Phase 5/8</span>
+  </div>
+</div>
       
         <h3 className="project-subheading">Latest Transactions</h3>
         <div className="rectangle-container">

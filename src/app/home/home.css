@@ -1,42 +1,44 @@
 .header {
-  background-color: #e3d9df;
-  padding: 10px;
+  background-color: white;
+  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+}
+
+.header-container {
+  display: flex;
+  align-items: center; 
+  justify-content: space-between; 
+  width: 100%; 
+  max-width: 1200px; 
 }
 
 .logo {
   font-size: 24px;
-  margin-left: 20px;
+  /*margin-left: 20px;*/
 }
 
-.mag {
+.mag, .black{
   color: #ca047b;
-
   font-family: Inter;
   font-size: 30px;
   font-style: normal;
-  font-weight: 800;
+  font-weight:bolder;
   line-height: normal;
 }
 
 .black {
   color: #000;
-  font-family: Inter;
-  font-size: 30px;
-  font-style: normal;
-  font-weight: 800;
-  line-height: normal;
 }
 
 .search-bar {
   margin: 0 auto;
-  width: 15cm;
+  width: 50%;
   background-color: #e4d1dd;
   border: 2px solid #ccc;
   border-radius: 15px;
   overflow: hidden;
+  
 }
 
 input {
@@ -48,11 +50,12 @@ input {
 }
 
 .login-button {
-  position: absolute;
+  margin-left: auto;
+  /*position: absolute;
   top: 10px;
   right: 10px;
   margin-right: 50px;
-  margin-top: 25px;
+  margin-top: 25px;*/
 }
 
 .login-button button {
@@ -85,37 +88,47 @@ main {
   line-height: normal;
 }
 
-.project-details {
+.project-details-container {
   display: flex;
-
+  flex-direction: column;
+  align-items: center; 
+  width: 100%; 
+}
+.project-details, .project-details_1{
+  display: flex;
+  justify-content: center;
+  width: 100%;
   margin-top: 10px;
 }
 
-.project-details span {
-  margin-left: 110px;
-  margin-bottom: 2px;
+.project-details span, .project-details_1 span {
+  flex: 1;
+  text-align: center;
+  /*margin-left: 110px;
+  margin-bottom: 2px;*/
   color: #000;
   font-family: Inter;
   font-size: 22px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: normal;
 }
 
-.project-details_1 {
-  display: flex;
-
-  margin-top: 10px;
+.project-details_1 span{
+  font-size: 53px;
+  color: #ca047b;
+ 
 }
-.project-details_1 span {
+/*.project-details_1 span {
   margin-left: 110px;
   color: #ca047b;
   font-family: Inter;
   font-size: 53px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: normal;
-}
+}*/
+
 .project-subheading {
   color: #000;
   margin-top: 40px;
@@ -123,7 +136,7 @@ main {
   font-size: 35px;
   margin-left: 30px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 900;
   line-height: normal;
 }
 
