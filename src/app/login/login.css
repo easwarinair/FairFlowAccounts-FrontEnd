@@ -4,6 +4,15 @@
   width: 100vw;
 }
 
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  text-align: center;  
+  padding: 20px;        
+}
+
 .left-panel {
   background-color: white;
   flex: 1;
@@ -48,7 +57,7 @@
 }
 
 .welcome {
-  font-size: 30px;
+  font-size: 40px;
   color: #ca047b;
   text-align: center;
 }
@@ -68,12 +77,17 @@ input {
 
 button {
   padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
   background-color: #ca047b;
-  color: black;
+  color: white;
   font-weight: bold;
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  
 }
 
 button:hover {

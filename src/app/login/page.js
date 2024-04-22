@@ -53,7 +53,7 @@ export default function Page() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name">Email:</label>
+              <label htmlFor="name" style={{fontWeight: 'bold'}}>Email:</label>
               <input
                 type="text"
                 id="name"
@@ -68,7 +68,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password">Password:</label>
+              <label htmlFor="password" style={{fontWeight: 'bold'}}>Password:</label>
               <input
                 type="password"
                 id="password"
@@ -85,7 +85,7 @@ export default function Page() {
           </form>
           <p>
             Don't have an account?{" "}
-            <a className="link" style={{ color: "#CA047B" }} href="/signup">
+            <a className="link" style={{ color: "#CA047B" , fontWeight:'bold'}} href="/signup">
               SignUp
             </a>
           </p>
