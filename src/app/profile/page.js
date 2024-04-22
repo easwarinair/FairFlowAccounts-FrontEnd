@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import "./profile.css";
 import { ProjectStatusAPICall } from "@/axios";
