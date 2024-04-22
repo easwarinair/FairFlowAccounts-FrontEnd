@@ -22,9 +22,9 @@ export default function Page() {
         const data = await response.json();
         console.log("data received", data);
 
-        if (data && data.result && data.result.length > 0) {
-          console.log("setting up....", data.result[0]);
-          setProjectTitle(data.result[0]);
+        if (data) {
+          console.log("setting up....", data.result.title);
+          setProjectTitle(data.result.title);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
         } else {
