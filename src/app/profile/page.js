@@ -31,38 +31,37 @@ export default function Page() {
 
   console.log(statuses);
   return (
-    <>
-      <header className="header">
-        <div className="logo">
-          <a href="/home">
-            <span className="mag">FairFlow</span>
-            <br />
-            <span className="black">Accounts</span>
-          </a>
-        </div>
-        <div className="search-bar">
-          <input
-            type="text"
-            style={{ fontWeight: "bold" }}
-            placeholder="Search transactions by block number, date, or more..."
-          />
-        </div>
-      </header>
-      <main>
-        <div className="circle-container">
-          <a href="../transaction_form/transaction_form.html">
-            <div className="circle">
-              <img src="profile.png" />
-            </div>
-          </a>
-          <h3 className="profile-name">
-            <Suspense>
+    <Suspense fallback={<div>Loading...</div>}>
+      <>
+        <header className="header">
+          <div className="logo">
+            <a href="/home">
+              <span className="mag">FairFlow</span>
+              <br />
+              <span className="black">Accounts</span>
+            </a>
+          </div>
+          <div className="search-bar">
+            <input
+              type="text"
+              style={{ fontWeight: "bold" }}
+              placeholder="Search transactions by block number, date, or more..."
+            />
+          </div>
+        </header>
+        <main>
+          <div className="circle-container">
+            <a href="../transaction_form/transaction_form.html">
+              <div className="circle">
+                <img src="profile.png" />
+              </div>
+            </a>
+            <h3 className="profile-name">
               @<span id="username">{user}</span>
-            </Suspense>
-          </h3>
-        </div>
+            </h3>
+          </div>
 
-        {/* <div className="profile_status">
+          {/* <div className="profile_status">
     {loading === "loading" && <p>loading...</p>}
     {loading === "error" && <p>error...</p>}
     {loading === "success" && statuses.length === 0 && <div>No statuses</div>}
@@ -74,8 +73,9 @@ export default function Page() {
       </div>
     )}
   </div> */}
-      </main>
-    </>
+        </main>
+      </>
+    </Suspense>
   );
 }
 {
