@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import "./profile.css";
 import { useSearchParams } from "next/navigation";
 import { ProjectStatusAPICall } from "@/axios";
@@ -41,7 +41,11 @@ export default function Page() {
           </a>
         </div>
         <div className="search-bar">
-        <input type="text" style={{ fontWeight: 'bold' }} placeholder="Search transactions by block number, date, or more..." />
+          <input
+            type="text"
+            style={{ fontWeight: "bold" }}
+            placeholder="Search transactions by block number, date, or more..."
+          />
         </div>
       </header>
       <main>
@@ -52,12 +56,13 @@ export default function Page() {
             </div>
           </a>
           <h3 className="profile-name">
-            @<span id="username">{user}</span>
+            <Suspense>
+              @<span id="username">{user}</span>
+            </Suspense>
           </h3>
         </div>
 
-        {
-  /* <div className="profile_status">
+        {/* <div className="profile_status">
     {loading === "loading" && <p>loading...</p>}
     {loading === "error" && <p>error...</p>}
     {loading === "success" && statuses.length === 0 && <div>No statuses</div>}
@@ -68,9 +73,7 @@ export default function Page() {
         })}
       </div>
     )}
-  </div> */
-}
-
+  </div> */}
       </main>
     </>
   );
