@@ -1,6 +1,32 @@
 "use client";
 import "./home.css";
 import { useEffect, useState } from "react";
+import {BigNumber} from 'bignumber.js';
+
+function weiToEthString(weiString) {
+    // Create a BigNumber from the wei string
+    const wei = new BigNumber(weiString);
+    // Define the conversion factor from wei to ether: 10^18
+    const factor = new BigNumber('1e18');
+    // Divide wei by the factor to get ether and convert it to a string
+    const ether = wei.dividedBy(factor);
+    return ether.toString();
+}
+
+// Example usage:
+console.log(weiToEthString("1000000000000000000")); // Outputs: "1"
+console.log(weiToEthString("1234567890000000000")); // Outputs: "1.23456789"
+
+function shortenText(text, maxLength) {
+    if (text.length <= maxLength) {
+        return text;
+    } else {
+        const halfLength = Math.floor((maxLength - 3) / 2);
+        const firstHalf = text.substring(0, halfLength); 
+        const secondHalf = text.substring(text.length - halfLength);
+        return firstHalf + '...' + secondHalf;
+    }
+}
 
 export default function Page() {
   const [blockCount, setBlockCount] = useState(0);
@@ -58,15 +84,15 @@ export default function Page() {
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
-        <span>{transactions[i].val}</span>
+        <span>{weiToEthString(transactions[i].val)}</span>
         <span>
           <a href="profiles/sender.html" className="profile-link">
-            <u>{transactions[i].sender}</u>
+            <u>{shortenText(transactions[i].sender,8)}</u>
           </a>
         </span>
         <span>
           <a href="profiles/receiver.html" className="profile-link">
-            <u>{transactions[i].receiver}</u>
+            <u>{shortenText(transactions[i].receiver,8)}</u>
           </a>
         </span>
         <span>{new Date().toLocaleString()}</span>
