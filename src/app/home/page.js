@@ -54,18 +54,19 @@ export default function Page() {
   };
 
   const renderTransactions = () => {
+    console.log(transactions);  
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
-        <span>{transactions.i.val}</span>
+        <span>{transactions?.i.val}</span>
         <span>
           <a href="profiles/sender.html" className="profile-link">
-            <u>{transactions.i.sender}</u>
+            <u>{transactions?.i.sender}</u>
           </a>
         </span>
         <span>
           <a href="profiles/receiver.html" className="profile-link">
-            <u>{transactions.i.receiver}</u>
+            <u>{transactions?.i.receiver}</u>
           </a>
         </span>
         <span>{new Date().toLocaleString()}</span>
