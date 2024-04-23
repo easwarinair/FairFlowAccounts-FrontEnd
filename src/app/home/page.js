@@ -34,6 +34,7 @@ function shortenText(text, maxLength) {
 export default function Page() {
   const [blockCount, setBlockCount] = useState(0);
   const [transactions, setTransactions] = useState([]);
+  const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
 
@@ -56,6 +57,7 @@ export default function Page() {
           setProjectTitle(data.result.title);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
+          setData(data);
         } else {
           console.error("No project data");
           setError("No data found");
