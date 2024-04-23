@@ -13,9 +13,12 @@ function weiToEthString(weiString) {
     return ether.toString();
 }
 
-// Example usage:
-console.log(weiToEthString("1000000000000000000")); // Outputs: "1"
-console.log(weiToEthString("1234567890000000000")); // Outputs: "1.23456789"
+function evaluateCompletion(phase) {
+    const curr=parseInt(phase);
+    const total=6;
+    const percentage=(curr/total) * 100;
+    return percentage.toFixed(0);
+}
 
 function shortenText(text, maxLength) {
     if (text.length <= maxLength) {
@@ -132,15 +135,15 @@ export default function Page() {
         <div className="project-details-container">
           <div className="project-details">
             <span>Progress</span>
+            <span>Current Phase</span>
             <span>Current Expenditure</span>
-            <span>Expected Cost</span>
             <span>Latest Update</span>
           </div>
           <div className="project-details_1">
-            <span>63%</span>
-            <span>2.85 Cr</span>
-            <span>6 Cr</span>
-            <span>Phase 5/8</span>
+            <span>{evaluateCompletion(data.result.currentPhase)}%</span>
+            <span>{data.result.phaseDescription}</span>
+            <span>{weiToEthString(data.result.fundsSpent)} ETH</span>
+            <span>Phase {data.result.currentPhase}/6</span>
           </div>
         </div>
 
