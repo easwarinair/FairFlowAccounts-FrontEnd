@@ -1,20 +1,21 @@
 "use client"
 
-import axios from "axios";
+import { useRouter } from "next/navigation";
 import "../login/login.css";
+import { RegisterAPICall } from "@/axios";
 
 export default function Page() {
+  const router = useRouter()
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = e.target.username.value;
     const password = e.target.password.value;
-    
-
     try {
-      const response = await axios.post('/signup', { username, password });
+      const response = await RegisterAPICall({username, password});
       if (response.status === 201) {
         alert('User registered successfully');
-        window.location.href = '/login';
+        router.push('/login');
       }
     } catch (error) {
       if (error.response && error.response.status === 409) {
