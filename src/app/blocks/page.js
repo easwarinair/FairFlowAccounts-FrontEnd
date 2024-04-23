@@ -1,12 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles.css";
-import { useRouter } from 'next/router'; 
+import { useRouter } from "next/router";
 
 export default function Page() {
-  /*const router = useRouter(); 
-  const { blockId } = router.query;*/
+  const router = useRouter();
+  const { block } = router.query;
+  const [transactions, setTransactions] = useState([]);
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/project/status`
+        );
+        console.log("attempting to fetch data");
+
+        if (!response.ok) {
+          throw new Error(`HTTP status ${response.status}`);
+        }
+        const data = await response.json();
+        console.log("data received", data);
+
+        if (data) {
+          console.log("setting up....", data.result.title);
+          setTransactions(data.transactions);
+        } else {
+          console.error("No project data");
+          setError("No data found");
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError(err.message || "Failed to fetch project data");
+      }
+    };
+
+    fetchData();
+  }, []);
   return (
     <>
       <header className="header">
@@ -25,12 +56,12 @@ export default function Page() {
           />
         </div>
       </header>
-      
+
       <main>
         <div className="rectangle-container">
           <div className="rounded-rectangle"></div>
         </div>
-        <h3 className="block-heading">Block #1</h3> 
+        <h3 className="block-heading">Block #{block}</h3>
         <h4 className="block-details">Details</h4>
       </main>
     </>

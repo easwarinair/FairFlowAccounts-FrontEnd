@@ -1,35 +1,35 @@
 "use client";
 import "./home.css";
 import { useEffect, useState } from "react";
-import {BigNumber} from 'bignumber.js';
-import {useRouter} from 'next/router';
+import { BigNumber } from "bignumber.js";
+import { useRouter } from "next/router";
 
 function weiToEthString(weiString) {
-    // Create a BigNumber from the wei string
-    const wei = new BigNumber(weiString);
-    // Define the conversion factor from wei to ether: 10^18
-    const factor = new BigNumber('1e18');
-    // Divide wei by the factor to get ether and convert it to a string
-    const ether = wei.dividedBy(factor);
-    return ether.toString();
+  // Create a BigNumber from the wei string
+  const wei = new BigNumber(weiString);
+  // Define the conversion factor from wei to ether: 10^18
+  const factor = new BigNumber("1e18");
+  // Divide wei by the factor to get ether and convert it to a string
+  const ether = wei.dividedBy(factor);
+  return ether.toString();
 }
 
 function evaluateCompletion(phase) {
-    const curr=parseInt(phase);
-    const total=6;
-    const percentage=(curr/total) * 100;
-    return percentage.toFixed(0);
+  const curr = parseInt(phase);
+  const total = 6;
+  const percentage = (curr / total) * 100;
+  return percentage.toFixed(0);
 }
 
 function shortenText(text, maxLength) {
-    if (text.length <= maxLength) {
-        return text;
-    } else {
-        const halfLength = Math.floor((maxLength - 3) / 2);
-        const firstHalf = text.substring(0, halfLength); 
-        const secondHalf = text.substring(text.length - halfLength);
-        return firstHalf + '...' + secondHalf;
-    }
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    const halfLength = Math.floor((maxLength - 3) / 2);
+    const firstHalf = text.substring(0, halfLength);
+    const secondHalf = text.substring(text.length - halfLength);
+    return firstHalf + "..." + secondHalf;
+  }
 }
 
 export default function Page() {
@@ -76,7 +76,7 @@ export default function Page() {
     let blocks = [];
     for (let i = 1; i <= blockCount; i++) {
       blocks.push(
-        <a key={i} href = "/blocks" className="rounded-rectangle">
+        <a key={i} href={`/blocks?block=${i}`} className="rounded-rectangle">
           <span className="block-number">#{i}</span>
         </a>
       );
@@ -86,19 +86,19 @@ export default function Page() {
   };
 
   const renderTransactions = () => {
-    console.log(transactions);  
+    console.log(transactions);
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
         <span>{weiToEthString(transactions[i].val)} ETH</span>
         <span>
           <a href="profiles/sender.html" className="profile-link">
-            <u>{shortenText(transactions[i].sender,12)}</u>
+            <u>{shortenText(transactions[i].sender, 12)}</u>
           </a>
         </span>
         <span>
           <a href="profiles/receiver.html" className="profile-link">
-            <u>{shortenText(transactions[i].receiver,12)}</u>
+            <u>{shortenText(transactions[i].receiver, 12)}</u>
           </a>
         </span>
         <span>{new Date().toLocaleDateString()}</span>
@@ -142,12 +142,14 @@ export default function Page() {
             <span>Current Expenditure</span>
             <span>Latest Update</span>
           </div>
-{ data.result && data.result.currentPhase && <div className="project-details_1">
-            <span>{evaluateCompletion(data.result.currentPhase)}%</span>
-            <span>{data.result.phaseDescription}</span>
-            <span>{weiToEthString(data.result.fundsSpent)} ETH</span>
-            <span>Phase {data.result.currentPhase}/6</span>
-          </div>}
+          {data.result && data.result.currentPhase && (
+            <div className="project-details_1">
+              <span>{evaluateCompletion(data.result.currentPhase)}%</span>
+              <span>{data.result.phaseDescription}</span>
+              <span>{weiToEthString(data.result.fundsSpent)} ETH</span>
+              <span>Phase {data.result.currentPhase}/6</span>
+            </div>
+          )}
         </div>
 
         <h3 className="project-subheading">Latest Transactions</h3>
