@@ -75,7 +75,7 @@ export default function Page() {
     let blocks = [];
     for (let i = 1; i <= blockCount; i++) {
       blocks.push(
-        <a key={i} className="rounded-rectangle">
+        <a key={i} href = '/blocks' className="rounded-rectangle">
           <span className="block-number">#{i}</span>
         </a>
       );
