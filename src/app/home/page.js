@@ -141,12 +141,12 @@ export default function Page() {
             <span>Current Expenditure</span>
             <span>Latest Update</span>
           </div>
-          <div className="project-details_1">
+{ data.result && data.result.currentPhase && <div className="project-details_1">
             <span>{evaluateCompletion(data.result.currentPhase)}%</span>
             <span>{data.result.phaseDescription}</span>
             <span>{weiToEthString(data.result.fundsSpent)} ETH</span>
             <span>Phase {data.result.currentPhase}/6</span>
-          </div>
+          </div>}
         </div>
 
         <h3 className="project-subheading">Latest Transactions</h3>
