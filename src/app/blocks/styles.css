@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #e4d1dd;
+    background-color: white;
 }
 
 header {
@@ -117,7 +117,7 @@ outline: none;
             line-height: normal;
         }
 
-        .next-arrow {
+       /* .next-arrow {
             margin-right: 10px; 
             font-size: 30px;
             margin-top: 20px;
@@ -126,7 +126,7 @@ outline: none;
             text-decoration: none;
             color: #000;
         
-        }
+        }*/
 
         .logo a {
     text-decoration: none; 
