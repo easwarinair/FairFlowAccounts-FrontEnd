@@ -28,9 +28,6 @@ export default function Page() {
           <div className="rounded-rectangle"></div>
         </div>
         <h3 className="block-heading">Block #49</h3>
-        <h2 className="block-subheading">
-          created on 29-10-2023 at 23:55 by @bobkuruvila
-        </h2>
         <h4 className="block-details">Details</h4>
       </main>
     </>
