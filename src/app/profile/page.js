@@ -2,15 +2,13 @@
 
 import { useEffect, useState } from "react";
 import "./profile.css";
-import { useSearchParams } from "next/navigation";
 import { ProjectStatusAPICall } from "@/axios";
 
 export default function Page() {
-  const searchParams = useSearchParams();
-  const user = searchParams.get("user");
-
+  const [user, setUser] = useState(null);
   const [statuses, setStatuses] = useState(null);
   const [loading, setLoading] = useState("loading");
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -29,9 +27,15 @@ export default function Page() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    setUser(params.get("user"));
+  }, []);
+
   console.log(statuses);
+
   return (
-    <>
+    <div>
       <header className="header">
         <div className="logo">
           <a href="/home">
@@ -41,42 +45,23 @@ export default function Page() {
           </a>
         </div>
         <div className="search-bar">
-        <input type="text" style={{ fontWeight: 'bold' }} placeholder="Search transactions by block number, date, or more..." />
+          <input
+            type="text"
+            style={{ fontWeight: "bold" }}
+            placeholder="Search transactions by block number, date, or more..."
+          />
         </div>
       </header>
       <main>
         <div className="circle-container">
           <a href="../transaction_form/transaction_form.html">
             <div className="circle">
-              <img src="profile.png" />
+              <img src="profile.png" alt="Profile" />
             </div>
           </a>
-          <h3 className="profile-name">
-            @<span id="username">{user}</span>
-          </h3>
+          <h3 className="profile-name">@{user}</h3>
         </div>
-
-        {
-  /* <div className="profile_status">
-    {loading === "loading" && <p>loading...</p>}
-    {loading === "error" && <p>error...</p>}
-    {loading === "success" && statuses.length === 0 && <div>No statuses</div>}
-    {loading === "success" && statuses.length > 0 && (
-      <div>
-        {statuses.map((status, index) => {
-          return <p key={index}>{status}</p>;
-        })}
-      </div>
-    )}
-  </div> */
-}
-
       </main>
-    </>
+    </div>
   );
-}
-{
-  /* <script>
-        document.getElementById('username').textContent = new URLSearchParams(window.location.search).get('user');
-    </script> */
 }
