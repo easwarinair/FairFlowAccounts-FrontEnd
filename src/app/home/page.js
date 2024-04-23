@@ -100,7 +100,7 @@ export default function Page() {
             <u>{shortenText(transactions[i].receiver,12)}</u>
           </a>
         </span>
-        <span>{new Date().toLocaleString()}</span>
+        <span>{new Date().toLocaleDateString()}</span>
       </div>
     ));
   };
