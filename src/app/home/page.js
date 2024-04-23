@@ -84,15 +84,15 @@ export default function Page() {
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
-        <span>{weiToEthString(transactions[i].val)}</span>
+        <span>{weiToEthString(transactions[i].val)} ETH</span>
         <span>
           <a href="profiles/sender.html" className="profile-link">
-            <u>{shortenText(transactions[i].sender,8)}</u>
+            <u>{shortenText(transactions[i].sender,12)}</u>
           </a>
         </span>
         <span>
           <a href="profiles/receiver.html" className="profile-link">
-            <u>{shortenText(transactions[i].receiver,8)}</u>
+            <u>{shortenText(transactions[i].receiver,12)}</u>
           </a>
         </span>
         <span>{new Date().toLocaleString()}</span>
