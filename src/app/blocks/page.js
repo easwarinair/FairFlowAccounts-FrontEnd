@@ -22,22 +22,7 @@ export default function Page() {
           />
         </div>
       </header>
-      <div className="logo">
-        <a href="../home.html">
-          <span className="mag">FairFlow</span>
-          <br></br>
-          <span className="black">Accounts</span>
-        </a>
-      </div>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="Search transactions by block number, date, or more..."
-        ></input>
-      </div>
-      <a href="block48.html" className="next-arrow">
-        &rarr;
-      </a>
+      
       <main>
         <div className="rectangle-container">
           <div className="rounded-rectangle"></div>
