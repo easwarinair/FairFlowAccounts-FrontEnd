@@ -10,6 +10,7 @@ export default function Page() {
   const [transactions, setTransactions] = useState([]);
   const [data, setData] = useState([]);
   useEffect(() => {
+    if (!router.isReady) return;
     const fetchData = async () => {
       try {
         const response = await fetch(
@@ -35,9 +36,8 @@ export default function Page() {
         setError(err.message || "Failed to fetch project data");
       }
     };
-
     fetchData();
-  }, []);
+  }, [router.isReady, block]);
   return (
     <>
       <header className="header">
