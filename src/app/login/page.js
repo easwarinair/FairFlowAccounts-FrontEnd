@@ -3,7 +3,8 @@
 import { useState } from "react";
 import "./login.css";
 import { LoginAPICall } from "@/axios";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import axios from 'axios';
 
 export default function Page() {
   const [email, setEmail] = useState("");
@@ -12,16 +13,26 @@ export default function Page() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  const isValidEmail = (email) => {
+    return /\S+@\S+\.\S+/.test(email);
+  };
+
   
+
   const checkEmail = async () => {
+    if (!isValidEmail(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
     setLoading(true);
     try {
       const response = await axios.get(`/api/check-email?email=${email}`);
       setLoading(false);
+      
       if (response.data.exists) {
-        setStage(2); // Move to password stage
+        setStage(2); // Email exists, move to login stage
       } else {
-        setStage(3); // Move to signup stage
+        setStage(3); // Email doesn't exist, move to signup stage
       }
     } catch (error) {
       console.error("Checking email failed:", error);
@@ -55,7 +66,7 @@ export default function Page() {
       const res = await axios.post('/signup', { email, password });
       setLoading(false);
       if (res.status === 201) {
-        router.push(`/profile?user=${res.data.id}`); // Automatically login after signup
+        router.push(`/profile?user=${res.data.id}`); 
       } else {
         alert("Error signing up");
       }
