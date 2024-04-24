@@ -56,7 +56,6 @@ export default function Page() {
           />
         </div>
       </header>
-
       <main>
         <div className="rectangle-container">
           <div className="rounded-rectangle"></div>
