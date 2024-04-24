@@ -2,7 +2,6 @@
 import "./home.css";
 import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
-import { useRouter } from "next/router";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -76,7 +75,7 @@ export default function Page() {
     let blocks = [];
     for (let i = 1; i <= blockCount; i++) {
       blocks.push(
-        <a key={i} href={`/blocks?block=${i}`} className="rounded-rectangle">
+        <a key={i} href="/blocks" className="rounded-rectangle">
           <span className="block-number">#{i}</span>
         </a>
       );
