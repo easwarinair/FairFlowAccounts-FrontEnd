@@ -19,13 +19,11 @@ export default function Page() {
     }, []);
 
     const onProjectClick = (id) => {
-       route.push(`/projects/${id}`);
-    }
+        route.push(`/projects/${id}`);
+    };
 
     return (
         <>
-
-        
             <header className="header">
                 <div className="logo">
                     <a href="/home">
@@ -41,11 +39,10 @@ export default function Page() {
                 </div> */}
             </header>
             <div className="project">
-            {loading && <div className="loading_text">Loading...</div>}
+                {loading && <div className="loading_text">Loading...</div>}
                 {projects.map((project) => {
                     return (
-                        <div key={project.id} onClick={()=> onProjectClick(project.contractAddress)}>
-
+                        <div key={project.id} onClick={() => onProjectClick(project.contractAddress)}>
                             <div className="rectangle-container">
                                 <div className="rounded-rectangle">
                                     <h3 className="block-heading">{project.projectTitle}</h3>
