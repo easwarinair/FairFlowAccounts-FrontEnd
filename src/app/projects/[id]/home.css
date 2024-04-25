@@ -99,8 +99,6 @@ main {
 .project-details span, .project-details_1 span {
   flex: 1;
   text-align: center;
-  /*margin-left: 110px;
-  margin-bottom: 2px;*/
   color: #000;
   font-family: Inter;
   font-size: 22px;
@@ -114,15 +112,7 @@ main {
   color: #ca047b;
  
 }
-/*.project-details_1 span {
-  margin-left: 110px;
-  color: #ca047b;
-  font-family: Inter;
-  font-size: 53px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
-}*/
+
 
 .project-subheading {
   color: #000;
@@ -207,26 +197,6 @@ hr {
   border-right: 1px solid black;
 
 }
-
-/*.transaction-details_1 {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  text-align: left;
-  margin-top: 1px;
-  margin-right: 2px;
-}
-
-.transaction-details_1 span {
-  margin-left: 115px;
-  margin-bottom: 2px;
-  color: #ca047b;
-  font-family: Inter;
-  font-size: 22px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}*/
 
 
 .profile-link {
