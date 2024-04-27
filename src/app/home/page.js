@@ -156,14 +156,18 @@ const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
         </div>
       </header>
       <main>
-        <div className="project-title-container">
-        <h1 className="project-title">
-          {error ? `Error: ${error}` : projectTitle || "Loading project..."}
-<button onClick={toggleDescription} className="dropdown-button">
+       <div className="project-title-container">
+          <h1 className="project-title">
+            {projectTitle}
+            <button onClick={toggleDescription} className="dropdown-button">
               &#9660; {/* Unicode character for downward pointing arrow */}
             </button>
-        </h1>
-          {isDescriptionOpen && <p className="project-description">{projectDescription}</p>}
+          </h1>
+          {isDescriptionOpen && (
+            <p className="project-description">
+              {projectDescription || "Default description if none is fetched"}
+            </p>
+          )}
         </div>
       </main>
       <main>
