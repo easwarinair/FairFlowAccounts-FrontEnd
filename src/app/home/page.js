@@ -37,6 +37,7 @@ export default function Page() {
   const [transactions, setTransactions] = useState([]);
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
+   const [projectDescription, setProjectDescription] = useState("This is a sample project description to test the visibility of the dropdown feature. Expand to read more about the project specifics, goals, and implementation phases.");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
