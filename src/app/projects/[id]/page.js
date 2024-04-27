@@ -8,31 +8,31 @@ import "./home.css";
 
 
 function weiToEthString(weiString) {
-    // Create a BigNumber from the wei string
-    const wei = new BigNumber(weiString);
-    // Define the conversion factor from wei to ether: 10^18
-    const factor = new BigNumber("1e18");
-    // Divide wei by the factor to get ether and convert it to a string
-    const ether = wei.dividedBy(factor);
-    return ether.toString();
+  // Create a BigNumber from the wei string
+  const wei = new BigNumber(weiString);
+  // Define the conversion factor from wei to ether: 10^18
+  const factor = new BigNumber("1e18");
+  // Divide wei by the factor to get ether and convert it to a string
+  const ether = wei.dividedBy(factor);
+  return ether.toString();
 }
 
 function evaluateCompletion(phase) {
-    const curr = parseInt(phase);
-    const total = 6;
-    const percentage = (curr / total) * 100;
-    return percentage.toFixed(0);
+  const curr = parseInt(phase);
+  const total = 6;
+  const percentage = (curr / total) * 100;
+  return percentage.toFixed(0);
 }
 
 function shortenText(text, maxLength) {
-    if (text.length <= maxLength) {
-        return text;
-    } else {
-        const halfLength = Math.floor((maxLength - 3) / 2);
-        const firstHalf = text.substring(0, halfLength);
-        const secondHalf = text.substring(text.length - halfLength);
-        return firstHalf + "..." + secondHalf;
-    }
+  if (text.length <= maxLength) {
+    return text;
+  } else {
+    const halfLength = Math.floor((maxLength - 3) / 2);
+    const firstHalf = text.substring(0, halfLength);
+    const secondHalf = text.substring(text.length - halfLength);
+    return firstHalf + "..." + secondHalf;
+  }
 }
 
 export default function Page() {
@@ -55,69 +55,78 @@ export default function Page() {
         sessionStorage.clear();  
         router.reload('/projects/[id]'); 
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await getProject(id);
-                console.log("attempting to fetch data");
-                console.log(response);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getProject(id);
+        console.log("attempting to fetch data");
+        console.log(response);
 
-                const data = response.data;
+        const data = response.data;
 
-                console.log("data", data);
-                if (data) {
-                    // console.log("setting up....", data.result.title);
-                    setProjectTitle(data.projectDetails.title);
-                    setBlockCount(data.blockCount || 0);
-                    setTransactions(data.transactions);
-                    setData(data);
-                } else {
-                    console.error("No project data");
-                    setError("No data found");
-                }
-            } catch (err) {
-                console.error("Fetch error:", err);
-                setError(err.message || "Failed to fetch project data");
-            }
-        };
+        console.log("data", data);
+        if (data) {
+          // console.log("setting up....", data.result.title);
+          setProjectTitle(data.projectDetails.title);
+          setBlockCount(data.blockCount || 0);
+          setTransactions(data.transactions);
+          setData(data);
+        } else {
+          console.error("No project data");
+          setError("No data found");
+        }
+      } catch (err) {
+        console.error("Fetch error:", err);
+        setError(err.message || "Failed to fetch project data");
+      }
+    };
 
         fetchData();
     }, [id]);
 
-    const renderBlocks = () => {
-        let blocks = [];
-        for (let i = 1; i <= blockCount; i++) {
-            blocks.push(
-                <a key={i} href="/blocks" className="rounded-rectangle">
-                    <span className="block-number">#{i}</span>
-                </a>
-            );
-        }
+  const renderBlocks = () => {
+    let blocks = [];
+    for (let i = 0; i < blockCount; i++) {
+      blocks.push(
+        <a
+          key={i + 1}
+          onClick={() => onBlockClick(i)}
+          className="rounded-rectangle"
+        >
+          <span className="block-number">#{i + 1}</span>
+        </a>
+      );
+    }
 
-        return blocks;
-    };
+    return blocks;
+  };
 
-    const renderTransactions = () => {
-        console.log(transactions);
+  const renderTransactions = () => {
+    console.log(transactions);
 
-        return Array.from({ length: blockCount }, (_, i) => (
-            <div key={i} className="transaction-details_1">
-                <span>{i + 1}</span>
-                <span>{weiToEthString(transactions[i].val)} ETH</span>
-                <span>
-                    <a href="profiles/sender.html" className="profile-link">
-                        <u>{shortenText(transactions[i].sender, 12)}</u>
-                    </a>
-                </span>
-                <span>
-                    <a href="profiles/receiver.html" className="profile-link">
-                        <u>{shortenText(transactions[i].receiver, 12)}</u>
-                    </a>
-                </span>
-                <span>{new Date().toLocaleDateString()}</span>
-            </div>
-        ));
-    };
+    return Array.from({ length: blockCount }, (_, i) => (
+      <div key={i} className="transaction-details_1">
+        <span>{i + 1}</span>
+        <span>{weiToEthString(transactions[i].val)} ETH</span>
+        <span>
+          <a href="profiles/sender.html" className="profile-link">
+            <u>{shortenText(transactions[i].sender, 12)}</u>
+          </a>
+        </span>
+        <span>
+          <a href="profiles/receiver.html" className="profile-link">
+            <u>{shortenText(transactions[i].receiver, 12)}</u>
+          </a>
+        </span>
+        <span>{new Date().toLocaleDateString()}</span>
+      </div>
+    ));
+  };
+
+  const onBlockClick = (id) => {
+    const tx = transactions[id];
+    navigate(`/blocks/${id}`, { state: tx });
+  };
 
     return (
         <>
@@ -163,10 +172,10 @@ export default function Page() {
                     )}
                 </div>
 
-                <h3 className="project-subheading">Latest Transactions</h3>
-                <div className="rectangle-container">{renderBlocks()}</div>
+        <h3 className="project-subheading">Latest Transactions</h3>
+        <div className="rectangle-container">{renderBlocks()}</div>
 
-                {/*<div className="project-status" id="project_status">
+        {/*<div className="project-status" id="project_status">
           Project status
           <p id="project_data"></p>
   </div>*/}
@@ -205,4 +214,4 @@ export default function Page() {
             </div>
         </>
     );
-      }}
+} }

@@ -108,7 +108,8 @@ export default function Page() {
       const res = await axios.post('/login', { email, password });
       setLoading(false);
       if (res.data.id) {
-        router.push(`/profile?user=${res.data.id}`);
+        router.push('/projects/[id]');
+        /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === 'Email not found') {
         alert("Email not found. Please sign up.");
       } else {
