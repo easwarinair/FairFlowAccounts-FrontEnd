@@ -37,6 +37,7 @@ export default function Page() {
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -105,6 +106,20 @@ export default function Page() {
     ));
   };
 
+   const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchQuery && !isNaN(searchQuery)) {
+      const blockId = parseInt(searchQuery, 10);
+      if (blockId > 0 && blockId <= blockCount) {
+        router.push(`/blocks/${blockId}`);
+      } else {
+        alert("Block number out of range");
+      }
+    } else {
+      alert("Please enter a valid block number");
+    }
+  };
+
   return (
     <>
       <header className="header">
@@ -114,13 +129,18 @@ export default function Page() {
             <br />
             <span className="black">Accounts</span>
           </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              style={{ fontWeight: "bold" }}
-              placeholder="Search transactions by block number, date, or more..."
-            />
-          </div>
+            <div className="search-bar">
+              <form onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  style={{ fontWeight: "bold" }}
+                  placeholder="Search transactions by block number..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button type="submit">Search</button>
+              </form>
+            </div>
           <div className="login-button">
             <a href="/login">
               <button style={{ color: "white" }}>Login</button>
