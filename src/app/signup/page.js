@@ -4,6 +4,8 @@ import { useRouter } from "next/navigation";
 import "../login/login.css";
 import { RegisterAPICall } from "@/axios";
 
+import { useState } from "react";
+
 export default function Page() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
