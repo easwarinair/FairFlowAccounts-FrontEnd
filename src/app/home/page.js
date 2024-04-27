@@ -37,7 +37,6 @@ export default function Page() {
   const [transactions, setTransactions] = useState([]);
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
-   const [projectDescription, setProjectDescription] = useState("This is a sample project description to test the visibility of the dropdown feature. Expand to read more about the project specifics, goals, and implementation phases.");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
@@ -160,8 +159,8 @@ const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
           <h1 className="project-title">
             {projectTitle}
             <button onClick={toggleDescription} className="dropdown-button">
-              &#9660; {/* Unicode character for downward pointing arrow */}
-            </button>
+            {isDescriptionOpen ? '\u25B2' : '\u25BC'} {/* Unicode arrows for up and down */}
+          </button>
           </h1>
           {isDescriptionOpen && (
             <p className="project-description">
