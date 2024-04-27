@@ -6,7 +6,7 @@ body {
 }
 
 header {
-    background-color: #e4d1dd; 
+    background-color: white; 
     padding: 10px;
     display: flex;
     justify-content: space-between;
@@ -40,7 +40,7 @@ line-height: normal;
 .search-bar {
 margin: 0 auto; 
 width: 15cm; 
-background-color: #e4d1dd;
+background-color: white;
 border: 2px solid #ccc; 
 border-radius: 15px; 
 overflow: hidden; 
