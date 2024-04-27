@@ -38,6 +38,7 @@ export default function Page() {
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+    const router = useRouter(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -111,7 +112,7 @@ export default function Page() {
     if (searchQuery && !isNaN(searchQuery)) {
       const blockId = parseInt(searchQuery, 10);
       if (blockId > 0 && blockId <= blockCount) {
-        router.push(`/blocks/${blockId}`);
+        router.push(`/blocks`);
       } else {
         alert("Block number out of range");
       }
