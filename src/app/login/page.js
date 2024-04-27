@@ -9,7 +9,6 @@ import axios from 'axios';
 export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [stage, setStage] = useState(1); // 1 for email only, 2 for password input, 3 for full signup
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -144,7 +143,7 @@ export default function Page() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email:</label>
+              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email</label>
               <input
                 type="email"
                 id="email"
@@ -157,7 +156,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password:</label>
+              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password</label>
               <input
                 type="password"
                 id="password"
@@ -169,7 +168,7 @@ export default function Page() {
               />
             </div>
             <button type="submit" className="submit-btn" disabled={loading}>
-              Login / Sign Up
+              Login
             </button>
           </form>
           <p>
