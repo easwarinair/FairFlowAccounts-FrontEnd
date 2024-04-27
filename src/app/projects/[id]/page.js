@@ -43,6 +43,7 @@ export default function Page() {
     const [error, setError] = useState("");
     const { id } = useParams();
     const [username, setUsername] = useState("");
+    const [searchQuery, setSearchQuery] = useState("");
     const router = useRouter(); 
     
     useEffect(() => {
@@ -128,6 +129,19 @@ export default function Page() {
     navigate(`/blocks/${id}`, { state: tx });
   };
 
+  const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchQuery && !isNaN(searchQuery)) {
+      const blockId = parseInt(searchQuery, 10);
+      if (blockId > 0 && blockId <= blockCount) {
+        router.push(`/blocks/${blockId}`);
+      } else {
+        alert("Block number out of range");
+      }
+    } else {
+      alert("Please enter a valid block number");
+    }
+  };
     return (
         <>
         <div className="home-container">
@@ -139,8 +153,17 @@ export default function Page() {
                         <span className="black">Accounts</span>
                     </div>
                     <div className="search-bar">
-                        <input type="text" style={{ fontWeight: "bold" }} placeholder="Search transactions by block number, date, or more..." />
-                    </div>
+              <form onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  style={{ fontWeight: "bold" }}
+                  placeholder="Search transactions by block number..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+                <button type="submit">Search</button>
+              </form>
+            </div>
                     <div className="login-button">
             {username ? (
               <button onClick={() => router.push('/profile')}>{username}</button>
