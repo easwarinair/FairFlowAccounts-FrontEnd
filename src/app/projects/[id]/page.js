@@ -54,7 +54,7 @@ export default function Page() {
     
       const handleLogout = () => {
         sessionStorage.clear();  
-        router.reload('/projects/[id]'); 
+        router.reload('/projects'); 
 
   useEffect(() => {
     const fetchData = async () => {

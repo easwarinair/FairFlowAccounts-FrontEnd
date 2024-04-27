@@ -9,7 +9,6 @@ import axios from 'axios';
 export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [stage, setStage] = useState(1); // 1 for email only, 2 for password input, 3 for full signup
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -108,7 +107,7 @@ export default function Page() {
       const res = await axios.post('/login', { email, password });
       setLoading(false);
       if (res.data.id) {
-        router.push('/projects/[id]');
+        router.push('/projects');
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === 'Email not found') {
         alert("Email not found. Please sign up.");
@@ -116,10 +115,11 @@ export default function Page() {
         alert("Invalid credentials");
       }
     } catch (err) {
-      console.error("Login error:", err);
-      setLoading(false);
-      alert("An error occurred during login.");
-    }
+    setLoading(false);
+    const errorMessage = err.response?.data?.error || "An error occurred during login.";
+    console.error("Login error:", errorMessage);
+    alert(errorMessage);
+}
   };
 
   return (
@@ -144,7 +144,7 @@ export default function Page() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email:</label>
+              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email</label>
               <input
                 type="email"
                 id="email"
@@ -157,7 +157,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password:</label>
+              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password</label>
               <input
                 type="password"
                 id="password"
@@ -169,7 +169,7 @@ export default function Page() {
               />
             </div>
             <button type="submit" className="submit-btn" disabled={loading}>
-              Login / Sign Up
+              Login
             </button>
           </form>
           <p>

@@ -36,7 +36,7 @@ export default function Page() {
 
   const handleLogout = () => {
     sessionStorage.clear();
-    router.push('/projects/[id]'); 
+    router.push('/projects'); 
   };
 
    // Redirect to login if no user data found
