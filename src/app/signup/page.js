@@ -87,7 +87,7 @@ export default function Page() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name" style={{ fontWeight: 'bold' }}>Name:</label>
+              <label htmlFor="name" style={{ fontWeight: 'bold' }}>Name</label>
               <input
                 type="text"
                 id="name"
@@ -100,7 +100,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email:</label>
+              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email</label>
               <input
                 type="email"
                 id="email"
@@ -113,7 +113,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password:</label>
+              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password</label>
               <input
                 type="password"
                 id="password"
@@ -125,7 +125,7 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="retypePassword" style={{ fontWeight: 'bold' }}>Retype Password:</label>
+              <label htmlFor="retypePassword" style={{ fontWeight: 'bold' }}>Retype Password</label>
               <input
                 type="password"
                 id="retypePassword"
@@ -136,7 +136,7 @@ export default function Page() {
                 onChange={(e) => setRetypePassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="submit" disabled={loading}>
+            <button type="submit" className="submit-btn" disabled={loading}>
               Sign Up
             </button>
             <p>
