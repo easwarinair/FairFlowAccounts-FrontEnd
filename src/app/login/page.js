@@ -115,10 +115,11 @@ export default function Page() {
         alert("Invalid credentials");
       }
     } catch (err) {
-      console.error("Login error:", err);
-      setLoading(false);
-      alert("An error occurred during login.");
-    }
+    setLoading(false);
+    const errorMessage = err.response?.data?.error || "An error occurred during login.";
+    console.error("Login error:", errorMessage);
+    alert(errorMessage);
+}
   };
 
   return (
