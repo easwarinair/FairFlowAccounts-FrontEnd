@@ -2,6 +2,7 @@
 import "./home.css";
 import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
+import { useRouter } from "next/navigation";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
