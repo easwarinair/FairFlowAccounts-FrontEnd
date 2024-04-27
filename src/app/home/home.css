@@ -88,6 +88,17 @@ main {
   line-height: normal;
 }
 
+.dropdown-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #ca047b;
+  font-size: 24px;
+  display: block; 
+  margin: 0 auto;
+  padding: 5px;
+  outline: none; 
+}
 .project-details-container {
   display: flex;
   flex-direction: column;
