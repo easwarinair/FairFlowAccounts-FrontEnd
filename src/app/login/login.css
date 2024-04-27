@@ -133,3 +133,34 @@ button:hover {
   border: 1px solid black;
   border-radius: 5px;
 }
+
+.form-group {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  width: 100%;
+  margin-bottom: 15px;     
+}
+
+.form-group label {
+  margin-bottom: 5px;   
+}
+
+.form-group input {
+  width: 90%;             
+  padding: 8px;            
+  box-sizing: border-box;  
+}
+
+.submit-btn {
+  display: inline-block;
+  width: auto;             
+  padding: 10px 20px;      
+  margin-top: 15px;        
+  align-self:center;   
+  cursor: pointer;        
+  background-color: #ca047b; 
+  color: white;           
+  border: none;          
+  border-radius: 5px;      
+}

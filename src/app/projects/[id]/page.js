@@ -1,9 +1,11 @@
 "use client";
-import "./home.css";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { BigNumber } from "bignumber.js";
-import { useParams } from "next/navigation";
-import { getProject } from "@/axios";
+import { useParams } from "next/navigation"; 
+import { getProject } from "@/axios"; 
+import "./home.css";
+
 
 function weiToEthString(weiString) {
     // Create a BigNumber from the wei string
@@ -40,6 +42,18 @@ export default function Page() {
     const [projectTitle, setProjectTitle] = useState("Loading project...");
     const [error, setError] = useState("");
     const { id } = useParams();
+    const [username, setUsername] = useState("");
+    const router = useRouter(); 
+    
+    useEffect(() => {
+       
+        const user = sessionStorage.getItem('username'); 
+        setUsername(user);  
+      }, []);
+    
+      const handleLogout = () => {
+        sessionStorage.clear();  
+        router.reload('/projects/[id]'); 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -68,7 +82,7 @@ export default function Page() {
         };
 
         fetchData();
-    }, []);
+    }, [id]);
 
     const renderBlocks = () => {
         let blocks = [];
@@ -107,6 +121,7 @@ export default function Page() {
 
     return (
         <>
+        <div className="home-container">
             <header className="header">
                 <div className="header-container">
                     <div className="logo">
@@ -118,10 +133,13 @@ export default function Page() {
                         <input type="text" style={{ fontWeight: "bold" }} placeholder="Search transactions by block number, date, or more..." />
                     </div>
                     <div className="login-button">
-                        <a href="/login">
-                            <button style={{ color: "white" }}>Login</button>
-                        </a>
-                    </div>
+            {username ? (
+              <button onClick={() => router.push('/profile')}>{username}</button>
+            ) : (
+              <button onClick={() => router.push('/login')}>Login</button>
+            )}
+            {username && <button onClick={handleLogout}>Logout</button>}
+          </div>
                 </div>
             </header>
             <main>
@@ -184,6 +202,7 @@ export default function Page() {
                     <div className="transaction-details_1">No transactions found</div>
                 )}
             </main>
+            </div>
         </>
     );
-}
+      }}

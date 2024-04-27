@@ -34,8 +34,20 @@ export default function Page() {
 
   console.log(statuses);
 
+  const handleLogout = () => {
+    sessionStorage.clear();
+    router.push('/projects/[id]'); 
+  };
+
+   // Redirect to login if no user data found
+  useEffect(() => {
+    if (!user) {
+      router.push('/login');  
+    }
+  }, [user]);
+  
   return (
-    <div>
+    <div className="profile-container">
       <header className="header">
         <div className="logo">
           <a href="/home">
@@ -54,12 +66,11 @@ export default function Page() {
       </header>
       <main>
         <div className="circle-container">
-          <a href="../transaction_form/transaction_form.html">
-            <div className="circle">
-              <img src="profile.png" alt="Profile" />
-            </div>
-          </a>
+          <div className="circle">
+            <img src="profile.png" alt="Profile" />
+          </div>
           <h3 className="profile-name">@{user}</h3>
+          <button onClick={handleLogout}>Logout</button>
         </div>
       </main>
     </div>
