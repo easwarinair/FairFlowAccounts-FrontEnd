@@ -39,6 +39,7 @@ export default function Page() {
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+   const [projectDescription, setProjectDescription] = useState("Expand to read more about the project specifics, goals, and implementation phases.");
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
     const router = useRouter(); 
 
