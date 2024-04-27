@@ -156,13 +156,13 @@ const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
         </div>
       </header>
       <main>
-       <div className="project-title-container">
-          <h1 className="project-title">
+      <div className="project-title-container">
+          <h1 className="project-title" style={{ textDecoration: isDescriptionOpen ? 'none' : 'underline' }}>
             {projectTitle}
-            <button onClick={toggleDescription} className="dropdown-button">
+          </h1>
+          <button onClick={toggleDescription} className="dropdown-button">
             {isDescriptionOpen ? '\u25B2' : '\u25BC'} {/* Unicode arrows for up and down */}
           </button>
-          </h1>
           {isDescriptionOpen && (
             <p className="project-description">
               {projectDescription || "Default description if none is fetched"}
