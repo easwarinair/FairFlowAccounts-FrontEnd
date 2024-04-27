@@ -99,6 +99,15 @@ main {
   padding: 5px;
   outline: none; 
 }
+
+.project-description {
+  display: block; 
+  max-height: none;
+  overflow: visible; 
+  padding: 10px 0; 
+  transition: all 0.3s ease-in-out; 
+}
+
 .project-details-container {
   display: flex;
   flex-direction: column;
