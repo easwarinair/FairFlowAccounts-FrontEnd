@@ -68,14 +68,14 @@
   align-items: center;
 }
 
-input {
+.input {
   padding: 10px;
   margin: 10px;
   width: 250px;
   border-radius: 10px;
 }
 
-button {
+.button {
   padding: 10px 20px;
   display: flex;
   justify-content: center;
@@ -90,7 +90,7 @@ button {
   
 }
 
-button:hover {
+.button:hover {
   background-color: #ddd;
 }
 
