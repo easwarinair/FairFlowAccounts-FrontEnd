@@ -137,15 +137,29 @@ button:hover {
 .form-group {
   display: flex;
   flex-direction: column; 
-  margin-bottom: 15px;     
+  margin-bottom: 5px;   
+  
 }
 
 .form-group label {
-  margin-bottom: 5px;   
+  margin-bottom: 5px;  
+  
 }
 
 .form-group input {
   width: 100%;             
   padding: 8px;            
   box-sizing: border-box;  
+}
+
+.submit-btn {
+  width: auto;             
+  padding: 10px 20px;      
+  margin-top: 10px;        
+  align-self: center;     
+  cursor: pointer;        
+  background-color: #ca047b; 
+  color: white;           
+  border: none;          
+  border-radius: 5px;      
 }
