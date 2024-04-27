@@ -140,7 +140,7 @@ export default function Page() {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                //<button type="submit">Search</button>
+
               </form>
             </div>
           <div className="login-button">
