@@ -105,7 +105,7 @@ export default function Page() {
     }
     setLoading(true);
     try {
-      const res = await axios.post('/api/login', { email, password });
+      const res = await axios.post('/login', { email, password });
       setLoading(false);
       if (res.data.id) {
         router.push(`/profile?user=${res.data.id}`);

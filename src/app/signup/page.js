@@ -20,7 +20,7 @@ export default function Page() {
     }
     setLoading(true);
     try {
-      const response = await axios.post('/api/signup', { name, email, password });
+      const response = await axios.post('/signup', { name, email, password });
       setLoading(false);
       if (response.status === 201) {
         alert('User registered successfully');
