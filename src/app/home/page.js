@@ -39,6 +39,7 @@ export default function Page() {
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
     const router = useRouter(); 
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export default function Page() {
         if (data) {
           console.log("setting up....", data.result.title);
           setProjectTitle(data.result.title);
+          setProjectDescription(data.result.description);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
           setData(data);
@@ -122,6 +124,8 @@ export default function Page() {
     }
   };
 
+const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
+
   return (
     <>
       <header className="header">
@@ -151,9 +155,15 @@ export default function Page() {
         </div>
       </header>
       <main>
+        <div className="project-title-container">
         <h1 className="project-title">
           {error ? `Error: ${error}` : projectTitle || "Loading project..."}
+<button onClick={toggleDescription} className="dropdown-button">
+              &#9660; {/* Unicode character for downward pointing arrow */}
+            </button>
         </h1>
+          {isDescriptionOpen && <p className="project-description">{projectDescription}</p>}
+        </div>
       </main>
       <main>
         <div className="project-details-container">
