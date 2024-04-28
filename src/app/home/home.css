@@ -21,7 +21,7 @@
 .mag,
 .black {
   color: #ca047b;
-  
+
   font-size: 30px;
   font-style: normal;
   font-weight: bolder;
@@ -59,7 +59,6 @@ input {
 }
 
 .login-button button {
-  
   font-size: 15px;
   font-weight: bold;
   padding: 5px 20px;
@@ -81,7 +80,7 @@ main {
   color: #000;
   text-align: center;
   margin-bottom: 50px;
-  
+
   font-size: 50px;
   font-style: normal;
   font-weight: 900;
@@ -129,7 +128,7 @@ main {
   /*margin-left: 110px;
   margin-bottom: 2px;*/
   color: #000;
-  
+
   font-size: 22px;
   font-style: normal;
   font-weight: 900;
@@ -153,7 +152,7 @@ main {
 .project-subheading {
   color: #000;
   margin-top: 40px;
-  
+
   font-size: 35px;
   margin-left: 30px;
   font-style: normal;
@@ -183,7 +182,6 @@ main {
   );
   box-shadow: 4px 8px 14.4px 0px rgba(0, 0, 0, 0.18);
 }
-
 
 .rectangle-container a {
   text-decoration: none;
@@ -219,7 +217,7 @@ hr {
   /*margin-bottom: 2px;
   margin-right: 20px;*/
   color: #000;
-  
+
   font-size: 22px;
   font-style: normal;
   font-weight: 700;

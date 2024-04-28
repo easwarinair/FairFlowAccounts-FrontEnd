@@ -14,7 +14,6 @@
 .mag {
   color: #ca047b;
 
-  
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -23,7 +22,7 @@
 
 .black {
   color: #000;
-  
+
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -77,7 +76,7 @@ input {
 .profile-name {
   color: #ca047b;
   margin-top: 10px;
-  
+
   font-size: 23px;
   font-weight: 700;
   line-height: normal;

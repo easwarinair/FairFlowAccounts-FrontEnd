@@ -26,7 +26,7 @@ export default function Page() {
     try {
       const res = await LoginAPICall({ email, password });
       if (res.data.id) {
-        showSuccessToast("Logged in successfully.")
+        showSuccessToast("Logged in successfully.");
         router.push("/projects");
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === "Email not found") {

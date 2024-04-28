@@ -140,11 +140,11 @@ input {
   text-decoration: none;
   color: inherit;
 }
-.creator_container{
+.creator_container {
   text-align: center;
   margin: 30px 0;
 }
-.creator-box{
+.creator-box {
   border: 1px dashed #ca047b;
   height: 100px;
   width: 200px;

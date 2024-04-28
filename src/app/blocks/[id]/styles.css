@@ -14,7 +14,6 @@ header {
 .mag {
   color: #ca047b;
 
-  
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -23,7 +22,7 @@ header {
 
 .black {
   color: #000;
-  
+
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -80,7 +79,7 @@ input {
   color: #000;
   margin-top: 5px;
   margin-left: 35px;
-  
+
   font-size: 40px;
   margin-left: 30px;
   font-style: normal;
@@ -92,7 +91,7 @@ input {
   color: #000;
   margin-top: 0;
   margin-left: 35px;
-  
+
   font-size: 20px;
   margin-left: 30px;
   font-style: normal;
@@ -104,7 +103,7 @@ input {
   color: #000;
   margin-top: 0;
   margin-left: 35px;
-  
+
   font-size: 30px;
   margin-left: 30px;
   font-style: normal;

@@ -20,7 +20,9 @@ const LoginButton = () => {
       }
     } catch (err) {
       console.log(err);
-      showErrorToast(err.message || "Something went wrong while trying to logout");
+      showErrorToast(
+        err.message || "Something went wrong while trying to logout"
+      );
     }
   };
 

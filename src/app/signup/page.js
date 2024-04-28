@@ -24,7 +24,7 @@ export default function Page() {
     }
     setLoading(true);
     try {
-      const response = await RegisterAPICall({name, email, password});
+      const response = await RegisterAPICall({ name, email, password });
       setLoading(false);
       if (response.status === 201) {
         showSuccessToast("User registered successfully");
