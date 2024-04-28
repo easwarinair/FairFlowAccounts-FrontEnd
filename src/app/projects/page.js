@@ -21,8 +21,8 @@ export default function Page() {
     });
   }, []);
 
-  const onProjectClick = (id) => {
-    route.push(`/projects/${id}`);
+  const onProjectClick = (id, hash) => {
+    route.push(`/projects/${id}/${hash}`);
   };
 
   return (
@@ -34,9 +34,9 @@ export default function Page() {
             {/* <br /> */}
             <span className="black">Accounts</span>
           </a>
-
-          <div className="welcome">Welcome!</div>
         </div>
+        <div className="welcome">Welcome!</div>
+        <span className="select_text">Select a project to continue!</span>
       </header>
       <div className="project">
         {loading && <div className="loading_text">Loading...</div>}
@@ -44,14 +44,11 @@ export default function Page() {
           console.log("building project:", project);
           return (
             <div
+              className="project_card"
               key={project.id}
-              onClick={() => onProjectClick(project.contractAddress)}
+              onClick={() => onProjectClick(project.contractAddress, project.txHash)}
             >
-              <div className="rectangle-container">
-                <div className="rounded-rectangle">
-                  <h3 className="block-heading">{project.projectTitle}</h3>
-                </div>
-              </div>
+              <h3 className="block-heading">{project.projectTitle}</h3>
             </div>
           );
         })}

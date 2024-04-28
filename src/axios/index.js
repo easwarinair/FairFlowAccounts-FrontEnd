@@ -12,4 +12,4 @@ export const LoginAPICall = (data) => api.post("/login", data);
 export const RegisterAPICall = (data) => api.post("/signup", data);
 export const ProjectStatusAPICall = () => api.get("/project/status");
 export const getProjects = () => api.get("/projects");
-export const getProjectDetails = (id) => api.get(`/projects/${id}`);
+export const getProjectDetails = (id, hash) => api.get(`/projects/${id}/${hash}`);

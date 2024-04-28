@@ -1,41 +1,38 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: white;
-}
-
-header {
-  /* background-color: #e4d1dd;  */
-  padding: 10px;
+.header {
+  text-align: center;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  align-content: center;
-  /* width: 100%; */
+  justify-content: center;
+  padding: 20px 0;
 }
 .welcome {
+  width: 100%;
+  text-align: center;
   font-size: 30px;
-  font-weight: 800;
+  font-weight: 600;
   color: #1f1a1d;
-  margin-left: 30px;
-  margin-top: 30px;
+  margin-top: 20px;
+}
+.select_text{
+  font-size: 0.95rem;
+  margin-top: 5px;
 }
 
 .project {
   display: flex;
+  padding: 20px;
   justify-content: center;
   flex-direction: row;
+  flex-wrap: wrap;
+  gap: 40px
 }
 .logo {
   font-size: 24px;
-  margin-left: 20px;
 }
 
 .mag {
   color: #ca047b;
-
-  font-family: Inter;
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -44,7 +41,6 @@ header {
 
 .black {
   color: #000;
-  font-family: Inter;
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
@@ -82,19 +78,14 @@ input {
     margin-top: 20px;
 } */
 
-.rounded-rectangle {
+.project_card {
   overflow: hidden; /* Prevents text from overflowing */
   /* white-space: nowrap; Ensures text doesn't wrap to the next line */
   text-overflow: ellipsis;
   cursor: pointer;
-  margin-left: 35px;
-  margin-top: 35px;
-  /* min-width: 140px; */
-  height: 200px;
-  width: 200px;
+  height: 150px;
+  width: 250px;
   border-radius: 15px;
-
-  flex-shrink: 0;
   background: radial-gradient(
     116.04% 133.12% at 50% 27.34%,
     rgba(229, 110, 182, 0.81) 0%,
@@ -103,6 +94,15 @@ input {
     #975b7f 74.98%
   );
   box-shadow: 4px 8px 14.4px 0px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: all 200ms ease-in-out;
+}
+.project_card:hover{
+  scale: 1.03;
 }
 /*.block-connector{
             width: 50px;
@@ -112,51 +112,21 @@ input {
 
 .block-heading {
   color: #000;
-  /* margin-top: 5px; */
-  /* margin-left: 35px; */
-  font-family: Inter;
-  font-size: 30px;
-  /* margin-left: 30px; */
-  font-style: normal;
+  font-size: 24px;
   font-weight: 700;
-  line-height: normal;
-}
-
-.block-subheading {
-  color: #000;
-  margin-top: 0;
-  margin-left: 35px;
-  font-family: Inter;
-  font-size: 20px;
-  margin-left: 30px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+  text-align: center;
 }
 
 .block-details {
   color: #000;
   margin-top: 0;
   margin-left: 35px;
-  font-family: Inter;
   font-size: 30px;
   margin-left: 30px;
   font-style: normal;
   font-weight: 700;
   line-height: normal;
 }
-
-/* .next-arrow {
-            margin-right: 10px; 
-            font-size: 30px;
-            margin-top: 20px;
-            margin-right: 20px;
-            font-weight: 2000;
-            text-decoration: none;
-            color: #000;
-        
-        }*/
-
 .logo a {
   text-decoration: none;
   color: inherit;

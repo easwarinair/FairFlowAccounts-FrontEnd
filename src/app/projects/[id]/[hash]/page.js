@@ -1,8 +1,8 @@
 "use client";
 
-import "./home.css";
+import "../home.css";
 import { useEffect, useState } from "react";
-import { getProject, getProjectDetails } from "@/axios";
+import { getProjectDetails } from "@/axios";
 import {
   evaluateCompletion,
   shortenText,
@@ -17,7 +17,7 @@ export default function Page(props) {
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
-  const { id } = props.params;
+  const { id, hash } = props.params;
 
   const [username, setUsername] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -36,7 +36,9 @@ export default function Page(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getProjectDetails(id);
+        if (!id) return alert("No id");
+        if (!hash) return alert("No hash");
+        const response = await getProjectDetails(id, hash);
         const data = response.data;
         if (data) {
           setProjectTitle(data.projectDetails.title);
@@ -61,7 +63,7 @@ export default function Page(props) {
     let blocks = [];
     for (let i = 1; i <= blockCount; i++) {
       blocks.push(
-        <div key={i} onClick={() => onBlockClick(i)}>
+        <div className="render-block" key={i} onClick={() => onBlockClick(i)}>
           <div className="rounded-rectangle"></div>
           <span className="block-number">#{i}</span>
         </div>
@@ -170,8 +172,11 @@ export default function Page(props) {
             )}
           </div>
 
-          <h3 className="project-subheading">Latest Transactions</h3>
-          <div className="rectangle-container">{renderBlocks()}</div>
+          <div className="render_render_blocks">
+            <h3 className="project-subheading">Latest Transactions</h3>
+            <div className="rectangle-container">{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}
+            </div>
+          </div>
 
           {/*<div className="project-status" id="project_status">
           Project status
