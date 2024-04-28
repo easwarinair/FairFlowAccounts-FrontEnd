@@ -1,10 +1,19 @@
 "use client";
 
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { getUserData } from "./utils";
 import { useRouter } from "next/navigation";
-import { toastError } from "@/lib/toast";
 import { getUserDataAPI } from "@/axios";
+
+export const getUserData = async () => {
+  try {
+    const res = await getUserDataAPI();
+    console.log(res)
+    if (res.status === 200) return res.data?.user;
+    else return false;
+  } catch (err) {
+    return false;
+  }
+};
 
 export const UserContext = createContext();
 
@@ -14,14 +23,11 @@ export const UserProvider = ({ children }) => {
     data: null,
     fetched: false,
   });
-  
+
   const checkSignedIn = async () => {
-    const res = await getUserDataAPI();
-    if (res) {
-      setSignedIn({ status: true, data: res, fetched: true });
-    } else {
-      setSignedIn({ status: false, data: null, fetched: true });
-    }
+    const res = await getUserData();
+    if (res) setSignedIn({ status: true, data: res, fetched: true });
+    else setSignedIn({ status: false, data: null, fetched: true });
   };
 
   useEffect(() => {
@@ -33,7 +39,7 @@ export const UserProvider = ({ children }) => {
 
   const router = useRouter();
   const showLogin = () => {
-    toastError(
+    alert(
       "You must be logged in to perform this operation. Please login and try again!"
     );
     router.push("/auth/login");

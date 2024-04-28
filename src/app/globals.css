@@ -21,9 +21,12 @@ body {
 
 /* login button */
 .login-button {
-  margin-left: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
 }
-
 .login-button button {
   font-size: 15px;
   font-weight: bold;
@@ -32,6 +35,7 @@ body {
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
+  color: white;
 }
 
 .login-button button:hover {
