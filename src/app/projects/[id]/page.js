@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { BigNumber } from "bignumber.js";
 import { useRouter, useParams } from "next/navigation";
-import { getProject, getProjectDetails } from "@/axios";
+import { getProjectDetails } from "@/axios";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
