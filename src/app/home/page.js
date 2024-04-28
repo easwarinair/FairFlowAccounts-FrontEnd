@@ -3,6 +3,7 @@ import "./home.css";
 import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
 import { useRouter } from "next/navigation";
+import { ProjectStatusAPICall } from "@/axios";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -39,22 +40,22 @@ export default function Page() {
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-   const [projectDescription, setProjectDescription] = useState("Expand to read more about the project specifics, goals, and implementation phases.");
+  const [projectDescription, setProjectDescription] = useState(
+    "Expand to read more about the project specifics, goals, and implementation phases."
+  );
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
-    const router = useRouter(); 
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_BASE_URL}/project/status`
-        );
+        const response = await ProjectStatusAPICall();
         console.log("attempting to fetch data");
-
-        if (!response.ok) {
+        console.log(response);
+        if (response.status !== 200) {
           throw new Error(`HTTP status ${response.status}`);
         }
-        const data = await response.json();
+        const { data } = response;
         console.log("data received", data);
 
         if (data) {
@@ -111,7 +112,7 @@ export default function Page() {
     ));
   };
 
-   const handleSearchSubmit = (event) => {
+  const handleSearchSubmit = (event) => {
     event.preventDefault();
     if (searchQuery && !isNaN(searchQuery)) {
       const blockId = parseInt(searchQuery, 10);
@@ -125,7 +126,7 @@ export default function Page() {
     }
   };
 
-const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
+  const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
 
   return (
     <>
@@ -136,18 +137,17 @@ const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
             <br />
             <span className="black">Accounts</span>
           </div>
-            <div className="search-bar">
-              <form onSubmit={handleSearchSubmit}>
-                <input
-                  type="text"
-                  style={{ fontWeight: "bold" }}
-                  placeholder="Search transactions by block number..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-
-              </form>
-            </div>
+          <div className="search-bar">
+            <form onSubmit={handleSearchSubmit}>
+              <input
+                type="text"
+                style={{ fontWeight: "bold" }}
+                placeholder="Search transactions by block number..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </form>
+          </div>
           <div className="login-button">
             <a href="/login">
               <button style={{ color: "white" }}>Login</button>
@@ -156,12 +156,16 @@ const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
         </div>
       </header>
       <main>
-      <div className="project-title-container">
-          <h1 className="project-title" style={{ textDecoration: isDescriptionOpen ? 'none' : 'underline' }}>
+        <div className="project-title-container">
+          <h1
+            className="project-title"
+            style={{ textDecoration: isDescriptionOpen ? "none" : "underline" }}
+          >
             {projectTitle}
           </h1>
           <button onClick={toggleDescription} className="dropdown-button">
-            {isDescriptionOpen ? '\u25B2' : '\u25BC'} {/* Unicode arrows for up and down */}
+            {isDescriptionOpen ? "\u25B2" : "\u25BC"}{" "}
+            {/* Unicode arrows for up and down */}
           </button>
           {isDescriptionOpen && (
             <p className="project-description">
