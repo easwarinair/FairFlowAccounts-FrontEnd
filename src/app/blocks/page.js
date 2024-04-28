@@ -1,13 +1,12 @@
 "use client";
 
-import {useState } from "react";
+import { useState } from "react";
 import "./styles.css";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
-
-   const [searchQuery, setSearchQuery] = useState("");
-    const router = useRouter(); 
+  const [searchQuery, setSearchQuery] = useState("");
+  const router = useRouter();
 
   const handleSearchSubmit = (event) => {
     event.preventDefault();
@@ -22,7 +21,7 @@ export default function Page() {
       alert("Please enter a valid block number");
     }
   };
-  
+
   return (
     <>
       <header className="header">
@@ -33,18 +32,17 @@ export default function Page() {
             <span className="black">Accounts</span>
           </a>
         </div>
-       <div className="search-bar">
-              <form onSubmit={handleSearchSubmit}>
-                <input
-                  type="text"
-                  style={{ fontWeight: "bold" }}
-                  placeholder="Search transactions by block number..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-          
-              </form>
-            </div>
+        <div className="search-bar">
+          <form onSubmit={handleSearchSubmit}>
+            <input
+              type="text"
+              style={{ fontWeight: "bold" }}
+              placeholder="Search transactions by block number..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
+        </div>
       </header>
       <main>
         <div className="rectangle-container">

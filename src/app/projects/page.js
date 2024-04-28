@@ -12,7 +12,7 @@ export default function Page() {
   useEffect(() => {
     setLoading(true);
     console.log(
-      "Inside useEffect of projects page, trying to get project data..."
+      "Inside useEffect of projects page, trying to get project data...",
     );
     getProjects().then((response) => {
       console.log(response.data);

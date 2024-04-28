@@ -1,10 +1,9 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 import "../login/login.css";
-
 
 import { RegisterAPICall } from "@/axios";
 
@@ -24,24 +23,24 @@ export default function Page() {
     }
     setLoading(true);
     try {
-      const response = await axios.post('/signup', { name, email, password });
+      const response = await axios.post("/signup", { name, email, password });
       setLoading(false);
       if (response.status === 201) {
-        alert('User registered successfully');
-        router.push('/login');
+        alert("User registered successfully");
+        router.push("/login");
       }
     } catch (error) {
       console.error("Signup error:", error);
       setLoading(false);
       if (error.response && error.response.status === 409) {
-        alert('User already exists. Please choose a different email.');
+        alert("User already exists. Please choose a different email.");
       } else {
-        alert('An error occurred during signup.');
+        alert("An error occurred during signup.");
       }
     }
   };
 
-/*export default function Page() {
+  /*export default function Page() {
   const router = useRouter()
 
   const handleSubmit = async (e) => {
@@ -89,7 +88,9 @@ export default function Page() {
         <div className="form-container">
           <form onSubmit={handleSubmit}>
             <div className="form-group">
-              <label htmlFor="name" style={{ fontWeight: 'bold' }}>Name</label>
+              <label htmlFor="name" style={{ fontWeight: "bold" }}>
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -102,7 +103,9 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="email" style={{ fontWeight: 'bold' }}>Email</label>
+              <label htmlFor="email" style={{ fontWeight: "bold" }}>
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -115,7 +118,9 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="password" style={{ fontWeight: 'bold' }}>Password</label>
+              <label htmlFor="password" style={{ fontWeight: "bold" }}>
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -127,7 +132,9 @@ export default function Page() {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="retypePassword" style={{ fontWeight: 'bold' }}>Retype Password</label>
+              <label htmlFor="retypePassword" style={{ fontWeight: "bold" }}>
+                Retype Password
+              </label>
               <input
                 type="password"
                 id="retypePassword"
@@ -138,14 +145,14 @@ export default function Page() {
                 onChange={(e) => setRetypePassword(e.target.value)}
               />
             </div>
-           <button type="submit" className="submit-btn" disabled={loading}>
+            <button type="submit" className="submit-btn" disabled={loading}>
               Sign Up
             </button>
             <p>
               Already have an account?{" "}
               <a
                 className="link"
-                style={{ color: "#CA047B", fontWeight: 'bold' }}
+                style={{ color: "#CA047B", fontWeight: "bold" }}
                 href="/login"
               >
                 Login
@@ -157,4 +164,3 @@ export default function Page() {
     </div>
   );
 }
-

@@ -64,7 +64,7 @@ export default function Page(props) {
         <div key={i} onClick={() => onBlockClick(i)}>
           <div className="rounded-rectangle"></div>
           <span className="block-number">#{i}</span>
-        </div>
+        </div>,
       );
     }
     return blocks;

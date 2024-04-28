@@ -62,15 +62,16 @@ input {
   display: flex;
   color: #fff;
   font-size: 24px;
-  
+
   font-weight: bold;
-  background: url('/profile.png'),
+  background:
+    url("/profile.png"),
     rgba(229, 110, 182, 0.81) -147.429px -64.061px / 234.432% 193.939% no-repeat;
 }
 .circle img {
   width: 100%;
   height: 100%;
-  object-fit:fill;
+  object-fit: fill;
 }
 
 .profile-name {

@@ -7,10 +7,10 @@
 
 .header-container {
   display: flex;
-  align-items: center; 
-  justify-content: space-between; 
-  width: 100%; 
-  max-width: 1200px; 
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .logo {
@@ -18,12 +18,13 @@
   /*margin-left: 20px;*/
 }
 
-.mag, .black{
+.mag,
+.black {
   color: #ca047b;
   font-family: Inter;
   font-size: 30px;
   font-style: normal;
-  font-weight:bolder;
+  font-weight: bolder;
   line-height: normal;
 }
 
@@ -38,7 +39,6 @@
   border: 2px solid #ccc;
   border-radius: 15px;
   overflow: hidden;
-  
 }
 
 input {
@@ -86,17 +86,19 @@ main {
 .project-details-container {
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  width: 100%; 
+  align-items: center;
+  width: 100%;
 }
-.project-details, .project-details_1{
+.project-details,
+.project-details_1 {
   display: flex;
   justify-content: center;
   width: 100%;
   margin-top: 10px;
 }
 
-.project-details span, .project-details_1 span {
+.project-details span,
+.project-details_1 span {
   flex: 1;
   text-align: center;
   color: #000;
@@ -107,12 +109,10 @@ main {
   line-height: normal;
 }
 
-.project-details_1 span{
+.project-details_1 span {
   font-size: 53px;
   color: #ca047b;
- 
 }
-
 
 .project-subheading {
   color: #000;
@@ -172,7 +172,8 @@ hr {
   padding: 0;
 }
 
-.transaction-details, .transaction-details_1 {
+.transaction-details,
+.transaction-details_1 {
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
@@ -180,12 +181,13 @@ hr {
   margin-top: 50px;
 }
 
-.transaction-details span, .transaction-details_1 span {
+.transaction-details span,
+.transaction-details_1 span {
   /*margin-left: 50px;*/
   flex: 1;
   text-align: center;
   margin: 0 20px;
- 
+
   /*margin-bottom: 2px;
   margin-right: 20px;*/
   color: #000;
@@ -195,9 +197,7 @@ hr {
   font-weight: 700;
   line-height: normal;
   border-right: 1px solid black;
-
 }
-
 
 .profile-link {
   margin-left: 10px;
