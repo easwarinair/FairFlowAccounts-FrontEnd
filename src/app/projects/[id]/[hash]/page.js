@@ -25,13 +25,7 @@ export default function Page(props) {
   const [txs, setTxs] = useState([]);
 
 
-  useEffect(() => {
-  const user = JSON.parse(sessionStorage.getItem('user'));
-  if (user && user.name) {
-    setUsername(user.name);
-  }
-}, []);
-
+  
   
   useEffect(() => {
     const fetchData = async () => {
