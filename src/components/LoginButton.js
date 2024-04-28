@@ -1,5 +1,6 @@
 "use client";
 
+import { LogoutAPI } from "@/axios";
 import { useUserContext } from "@/context/UserContext";
 import { useRouter } from "next/navigation";
 
@@ -7,9 +8,19 @@ const LoginButton = () => {
   const router = useRouter();
   const { signedIn } = useUserContext();
 
-  const handleLogout = () => {
+  const handleLogout = async () => {
     if (typeof window === "undefined") return;
-    router.push("/login");
+    try {
+      const res = await LogoutAPI();
+      if (res.status === 200) {
+        router.push("/login");
+      } else {
+        throw new Error(res.data.error || "Logout Error");
+      }
+    } catch (err) {
+      console.log(err);
+      alert(err.message || "Something went wrong while trying to logout");
+    }
   };
 
   return (
