@@ -25,6 +25,7 @@ export default function Page() {
     try {
       const res = await LoginAPICall({ email, password });
       if (res.data.id) {
+        sessionStorage.setItem('user', JSON.stringify({ id: res.data.id, username: res.data.name }));
         router.push("/projects");
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === "Email not found") {
