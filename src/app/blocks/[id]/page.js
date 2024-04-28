@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 import "./styles.css";
+import Link from "next/link";
 
 export default function Page() {
   const { id } = useParams();
@@ -24,11 +25,11 @@ export default function Page() {
     <>
       <header className="header">
         <div className="logo">
-          <a href="/home">
+          <Link href="/home">
             <span className="mag">FairFlow</span>
             <br />
             <span className="black">Accounts</span>
-          </a>
+          </Link>
         </div>
       </header>
       <main>

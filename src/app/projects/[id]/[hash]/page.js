@@ -9,6 +9,7 @@ import {
   weiToEthString,
 } from "@/utils/projectDetails";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page(props) {
   const router = useRouter();
@@ -79,14 +80,14 @@ export default function Page(props) {
         <span>{i + 1}</span>
         <span>{weiToEthString(transactions[i].val)} ETH</span>
         <span>
-          <a href="profiles/sender.html" className="profile-link">
+          <Link href="profiles/sender.html" className="profile-link">
             <u>{shortenText(transactions[i].sender, 12)}</u>
-          </a>
+          </Link>
         </span>
         <span>
-          <a href="profiles/receiver.html" className="profile-link">
+          <Link href="profiles/receiver.html" className="profile-link">
             <u>{shortenText(transactions[i].receiver, 12)}</u>
-          </a>
+          </Link>
         </span>
         <span>{new Date().toLocaleDateString()}</span>
       </div>
@@ -116,9 +117,26 @@ export default function Page(props) {
       <div className="home-container">
         <header className="header">
           <div className="header-container">
+            <Link className="back" href="/projects">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="48"
+                height="48"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="lucide lucide-circle-arrow-left"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <path d="M16 12H8" />
+                <path d="m12 8-4 4 4 4" />
+              </svg>
+            </Link>
             <div className="logo">
               <span className="mag">FairFlow</span>
-              <br />
               <span className="black">Accounts</span>
             </div>
             <div className="search-bar">
@@ -194,14 +212,14 @@ export default function Page(props) {
                   <span>{index + 1}</span>
                   <span>{weiToEthString(transaction.val)} ETH</span>
                   <span>
-                    <a href="profiles/sender.html" className="profile-link">
+                    <Link href="profiles/sender.html" className="profile-link">
                       <u>{shortenText(transaction.sender, 12)}</u>
-                    </a>
+                    </Link>
                   </span>
                   <span>
-                    <a href="profiles/receiver.html" className="profile-link">
+                    <Link href="profiles/receiver.html" className="profile-link">
                       <u>{shortenText(transaction.receiver, 12)}</u>
-                    </a>
+                    </Link>
                   </span>
                   <span>{new Date().toLocaleDateString()}</span>
                 </div>

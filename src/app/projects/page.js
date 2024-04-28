@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import "./styles.css";
 import { getProjects } from "@/axios";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Page() {
   const [projects, setProjects] = useState([]);
@@ -27,31 +28,54 @@ export default function Page() {
 
   return (
     <>
-      <header className="header">
+      <header className="headers">
         <div className="logo">
-          <a href="/home">
+          <Link href="/home" className="logo">
             <span className="mag">FairFlow</span>
-            {/* <br /> */}
             <span className="black">Accounts</span>
-          </a>
+          </Link>
         </div>
-        <div className="welcome">Welcome!</div>
-        <span className="select_text">Select a project to continue!</span>
       </header>
-      <div className="project">
-        {loading && <div className="loading_text">Loading...</div>}
-        {projects.map((project) => {
-          console.log("building project:", project);
-          return (
-            <div
-              className="project_card"
-              key={project.id}
-              onClick={() => onProjectClick(project.contractAddress, project.txHash)}
+      <div className="center">
+        <div className="welcome">Welcome!</div>
+        <div className="creator_container">
+          <span className="select_text">Create a project!</span>
+          <Link href="/projects/create" className="creator-box">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#ca047b"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="lucide lucide-plus"
             >
-              <h3 className="block-heading">{project.projectTitle}</h3>
-            </div>
-          );
-        })}
+              <path d="M5 12h14" />
+              <path d="M12 5v14" />
+            </svg>
+          </Link>
+        </div>
+        <span className="select_text">OR Select a project to continue!</span>
+        <div className="project">
+          {loading && <div className="loading_text">Loading...</div>}
+          {projects.map((project) => {
+            console.log("building project:", project);
+            return (
+              <div
+                className="project_card"
+                key={project.id}
+                onClick={() =>
+                  onProjectClick(project.contractAddress, project.txHash)
+                }
+              >
+                <h3 className="block-heading">{project.projectTitle}</h3>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </>
   );

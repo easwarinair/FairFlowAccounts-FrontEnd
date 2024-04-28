@@ -4,22 +4,21 @@
 
 .header {
   background-color: white;
-  padding: 10px 20px;
   display: flex;
   justify-content: center;
+  width: 100vw;
+}
+
+.back{
+  margin-right: 30px;
 }
 
 .header-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: 10px 100px;
   width: 100%;
-  max-width: 1200px;
-}
-
-.logo {
-  font-size: 24px;
-  /*margin-left: 20px;*/
 }
 
 .mag,

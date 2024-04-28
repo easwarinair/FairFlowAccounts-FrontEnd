@@ -4,6 +4,7 @@ import "./profile.css";
 import { useEffect, useState } from "react";
 import { ProjectStatusAPICall } from "@/axios";
 import { useRouter, useSearchParams } from "next/navigation";
+import Link from "next/link";
 
 export default function Page() {
   const [user, setUser] = useState(null);
@@ -63,11 +64,11 @@ export default function Page() {
     <div className="profile-container">
       <header className="header">
         <div className="logo">
-          <a href="/home">
+          <Link href="/home">
             <span className="mag">FairFlow</span>
             <br />
             <span className="black">Accounts</span>
-          </a>
+          </Link>
         </div>
         <div className="search-bar">
           <input

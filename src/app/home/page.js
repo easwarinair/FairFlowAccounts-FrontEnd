@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
 import { useRouter } from "next/navigation";
 import { ProjectStatusAPICall } from "@/axios";
+import Link from "next/link";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -98,14 +99,14 @@ export default function Page() {
         <span>{i + 1}</span>
         <span>{weiToEthString(transactions[i].val)} ETH</span>
         <span>
-          <a href="profiles/sender.html" className="profile-link">
+          <Link href="profiles/sender.html" className="profile-link">
             <u>{shortenText(transactions[i].sender, 12)}</u>
-          </a>
+          </Link>
         </span>
         <span>
-          <a href="profiles/receiver.html" className="profile-link">
+          <Link href="profiles/receiver.html" className="profile-link">
             <u>{shortenText(transactions[i].receiver, 12)}</u>
-          </a>
+          </Link>
         </span>
         <span>{new Date().toLocaleDateString()}</span>
       </div>
@@ -149,9 +150,9 @@ export default function Page() {
             </form>
           </div>
           <div className="login-button">
-            <a href="/login">
+            <Link href="/login">
               <button style={{ color: "white" }}>Login</button>
-            </a>
+            </Link>
           </div>
         </div>
       </header>
