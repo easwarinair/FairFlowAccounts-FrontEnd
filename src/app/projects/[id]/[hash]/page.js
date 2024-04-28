@@ -172,11 +172,8 @@ export default function Page(props) {
             )}
           </div>
 
-          <div className="render_render_blocks">
-            <h3 className="project-subheading">Latest Transactions</h3>
-            <div className="rectangle-container">{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}{renderBlocks()}
-            </div>
-          </div>
+          <h3 className="project_subheading">Latest Transactions</h3>
+          <div className="rectangle-container">{renderBlocks()}</div>
 
           {/*<div className="project-status" id="project_status">
           Project status
