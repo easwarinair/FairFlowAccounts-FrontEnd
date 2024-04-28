@@ -5,7 +5,8 @@ body {
   background-color: white;
 }
 
-*, :root{
+*,
+:root {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -16,4 +17,23 @@ body {
   display: flex;
   flex-direction: column;
   align-items: start;
+}
+
+/* login button */
+.login-button {
+  margin-left: auto;
+}
+
+.login-button button {
+  font-size: 15px;
+  font-weight: bold;
+  padding: 5px 20px;
+  background-color: #ca047b;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-button button:hover {
+  background-color: #ddd;
 }

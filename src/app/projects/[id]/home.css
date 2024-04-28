@@ -52,25 +52,6 @@ input {
   outline: none;
 }
 
-.login-button {
-  margin-left: auto;
-}
-
-.login-button button {
-  
-  font-size: 15px;
-  font-weight: bold;
-  padding: 5px 20px;
-  background-color: #ca047b;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.login-button button:hover {
-  background-color: #ddd;
-}
-
 main {
   padding: 20px;
 }

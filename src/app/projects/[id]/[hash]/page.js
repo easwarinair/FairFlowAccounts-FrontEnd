@@ -10,6 +10,7 @@ import {
 } from "@/utils/projectDetails";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LoginButton from "@/components/LoginButton";
 
 export default function Page(props) {
   const router = useRouter();
@@ -20,19 +21,8 @@ export default function Page(props) {
   const [error, setError] = useState("");
   const { id, hash } = props.params;
 
-  const [username, setUsername] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [txs, setTxs] = useState([]);
-
-  useEffect(() => {
-    const user = sessionStorage.getItem("username");
-    setUsername(user);
-  }, []);
-
-  const handleLogout = () => {
-    sessionStorage.clear();
-    router.reload("/projects");
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -151,16 +141,7 @@ export default function Page(props) {
                 <button type="submit">Search</button>
               </form>
             </div>
-            <div className="login-button">
-              {username ? (
-                <button onClick={() => router.push("/profile")}>
-                  {username}
-                </button>
-              ) : (
-                <button onClick={() => router.push("/login")}>Login</button>
-              )}
-              {username && <button onClick={handleLogout}>Logout</button>}
-            </div>
+            <LoginButton />
           </div>
         </header>
         <main>

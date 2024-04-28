@@ -5,6 +5,7 @@ import "./styles.css";
 import { getProjects } from "@/axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LoginButton from "@/components/LoginButton";
 
 export default function Page() {
   const [projects, setProjects] = useState([]);
@@ -35,6 +36,7 @@ export default function Page() {
             <span className="black">Accounts</span>
           </Link>
         </div>
+        <LoginButton />
       </header>
       <div className="center">
         <div className="welcome">Welcome!</div>
