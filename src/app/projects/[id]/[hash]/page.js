@@ -24,6 +24,15 @@ export default function Page(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [txs, setTxs] = useState([]);
 
+
+  useEffect(() => {
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  if (user && user.name) {
+    setUsername(user.name);
+  }
+}, []);
+
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
