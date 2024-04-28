@@ -9,7 +9,6 @@ import axios from 'axios';
 export default function Page() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [stage, setStage] = useState(1); // 1 for email only, 2 for password input, 3 for full signup
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
@@ -108,17 +107,19 @@ export default function Page() {
       const res = await axios.post('/login', { email, password });
       setLoading(false);
       if (res.data.id) {
-        router.push(`/profile?user=${res.data.id}`);
+        router.push('/projects');
+        /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === 'Email not found') {
         alert("Email not found. Please sign up.");
       } else {
         alert("Invalid credentials");
       }
     } catch (err) {
-      console.error("Login error:", err);
-      setLoading(false);
-      alert("An error occurred during login.");
-    }
+    setLoading(false);
+    const errorMessage = err.response?.data?.error || "An error occurred during login.";
+    console.error("Login error:", errorMessage);
+    alert(errorMessage);
+}
   };
 
   return (

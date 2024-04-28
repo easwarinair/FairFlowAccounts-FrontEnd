@@ -2,6 +2,7 @@
 import "./home.css";
 import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
+import { useRouter } from "next/navigation";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -37,6 +38,10 @@ export default function Page() {
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+   const [projectDescription, setProjectDescription] = useState("Expand to read more about the project specifics, goals, and implementation phases.");
+  const [isDescriptionOpen, setDescriptionOpen] = useState(false);
+    const router = useRouter(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -55,6 +60,7 @@ export default function Page() {
         if (data) {
           console.log("setting up....", data.result.title);
           setProjectTitle(data.result.title);
+          setProjectDescription(data.result.description);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
           setData(data);
@@ -105,6 +111,22 @@ export default function Page() {
     ));
   };
 
+   const handleSearchSubmit = (event) => {
+    event.preventDefault();
+    if (searchQuery && !isNaN(searchQuery)) {
+      const blockId = parseInt(searchQuery, 10);
+      if (blockId > 0 && blockId <= blockCount) {
+        router.push(`/blocks`);
+      } else {
+        alert("Block number out of range");
+      }
+    } else {
+      alert("Please enter a valid block number");
+    }
+  };
+
+const toggleDescription = () => setDescriptionOpen(!isDescriptionOpen);
+
   return (
     <>
       <header className="header">
@@ -114,13 +136,18 @@ export default function Page() {
             <br />
             <span className="black">Accounts</span>
           </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              style={{ fontWeight: "bold" }}
-              placeholder="Search transactions by block number, date, or more..."
-            />
-          </div>
+            <div className="search-bar">
+              <form onSubmit={handleSearchSubmit}>
+                <input
+                  type="text"
+                  style={{ fontWeight: "bold" }}
+                  placeholder="Search transactions by block number..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+
+              </form>
+            </div>
           <div className="login-button">
             <a href="/login">
               <button style={{ color: "white" }}>Login</button>
@@ -129,9 +156,19 @@ export default function Page() {
         </div>
       </header>
       <main>
-        <h1 className="project-title">
-          {error ? `Error: ${error}` : projectTitle || "Loading project..."}
-        </h1>
+      <div className="project-title-container">
+          <h1 className="project-title" style={{ textDecoration: isDescriptionOpen ? 'none' : 'underline' }}>
+            {projectTitle}
+          </h1>
+          <button onClick={toggleDescription} className="dropdown-button">
+            {isDescriptionOpen ? '\u25B2' : '\u25BC'} {/* Unicode arrows for up and down */}
+          </button>
+          {isDescriptionOpen && (
+            <p className="project-description">
+              {projectDescription || "Default description if none is fetched"}
+            </p>
+          )}
+        </div>
       </main>
       <main>
         <div className="project-details-container">

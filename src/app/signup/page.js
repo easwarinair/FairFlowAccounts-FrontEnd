@@ -1,10 +1,12 @@
 "use client"
 
 import { useRouter } from "next/navigation";
-import "../login/login.css";
-import { RegisterAPICall } from "@/axios";
-
 import { useState } from "react";
+
+import "../login/login.css";
+
+
+import { RegisterAPICall } from "@/axios";
 
 export default function Page() {
   const [name, setName] = useState("");
@@ -136,7 +138,7 @@ export default function Page() {
                 onChange={(e) => setRetypePassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="submit-btn" disabled={loading}>
+           <button type="submit" className="submit-btn" disabled={loading}>
               Sign Up
             </button>
             <p>
