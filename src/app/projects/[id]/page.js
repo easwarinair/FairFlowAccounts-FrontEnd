@@ -2,9 +2,8 @@
 import "./home.css";
 import { useEffect, useState } from "react";
 import { BigNumber } from "bignumber.js";
-import { useParams } from "next/navigation";
-import { useNavigate } from "react-router-dom";
-import { getProject } from "@/axios";
+import { useRouter, useParams } from "next/navigation";
+import { getProject, getProjectDetails } from "@/axios";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -38,27 +37,26 @@ export default function Page() {
   const [blockCount, setBlockCount] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [data, setData] = useState([]);
+  const [txs, setTxs] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const { id } = useParams();
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await getProject(id);
-        console.log("attempting to fetch data");
-        console.log(response);
-
+        const response = await getProjectDetails(id);
+        // console.log("attempting to fetch data");
+        // console.log(response);
         const data = response.data;
-
-        console.log("data", data);
+        // console.log("data", data);
         if (data) {
-          // console.log("setting up....", data.result.title);
           setProjectTitle(data.projectDetails.title);
-          setBlockCount(data.blockCount || 0);
+          setBlockCount(data.blockCount);
           setTransactions(data.transactions);
           setData(data);
+          localStorage.setItem("txs", JSON.stringify(data.transactions));
         } else {
           console.error("No project data");
           setError("No data found");
@@ -68,24 +66,19 @@ export default function Page() {
         setError(err.message || "Failed to fetch project data");
       }
     };
-
     fetchData();
   }, []);
 
   const renderBlocks = () => {
     let blocks = [];
-    for (let i = 0; i < blockCount; i++) {
+    for (let i = 1; i <= blockCount; i++) {
       blocks.push(
-        <a
-          key={i + 1}
-          onClick={() => onBlockClick(i)}
-          className="rounded-rectangle"
-        >
-          <span className="block-number">#{i + 1}</span>
-        </a>
+        <div key={i} onClick={() => onBlockClick(i)}>
+          <div className="rounded-rectangle"></div>
+          <span className="block-number">#{i}</span>
+        </div>
       );
     }
-
     return blocks;
   };
 
@@ -113,7 +106,7 @@ export default function Page() {
 
   const onBlockClick = (id) => {
     const tx = transactions[id];
-    navigate(`/blocks/${id}`, { state: tx });
+    router.push(`/blocks/${id}`);
   };
 
   return (
@@ -124,13 +117,6 @@ export default function Page() {
             <span className="mag">FairFlow</span>
             <br />
             <span className="black">Accounts</span>
-          </div>
-          <div className="search-bar">
-            <input
-              type="text"
-              style={{ fontWeight: "bold" }}
-              placeholder="Search transactions by block number, date, or more..."
-            />
           </div>
           <div className="login-button">
             <a href="/login">

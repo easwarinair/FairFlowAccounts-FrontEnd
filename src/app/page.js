@@ -1,11 +1,8 @@
-"use client"
+"use client";
 
 import { useRouter } from "next/navigation";
 
 export default function Home() {
-  const router = useRouter()
-  router.push("/home")
-  return (
-    <main><a href="/login">Login</a></main>
-  );
+  const router = useRouter();
+  router.push("/projects");
 }

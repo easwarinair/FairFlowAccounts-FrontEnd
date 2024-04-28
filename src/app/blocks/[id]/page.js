@@ -1,15 +1,25 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { useLocation } from "react-router-dom";
 
 import "./styles.css";
 
 export default function Page() {
   const { id } = useParams();
-  const location = useLocation();
-  console.log("Received data:", location.state);
+  const [transactions, setTxs] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const txs = JSON.parse(localStorage.getItem("txs"));
+        if (txs) {
+          console.log("Got transactions:", txs[id - 1]);
+          setTxs(txs);
+        }
+      } catch (error) {}
+    };
+    fetchData();
+  }, []);
   return (
     <>
       <header className="header">
@@ -26,6 +36,11 @@ export default function Page() {
           <div className="rounded-rectangle"></div>
         </div>
         <h3 className="block-heading">Block #{id}</h3>
+        {transactions[id - 1] ? (
+          <p>Created on 29th April 2024 by {transactions[id - 1].sender}</p>
+        ) : (
+          <p>Loading transaction data...</p> // Provide a loading state or a fallback
+        )}
         <h4 className="block-details">Details</h4>
       </main>
     </>

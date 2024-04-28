@@ -41,6 +41,7 @@ export default function Page() {
       <div className="project">
         {loading && <div className="loading_text">Loading...</div>}
         {projects.map((project) => {
+          console.log("building project:", project);
           return (
             <div
               key={project.id}
