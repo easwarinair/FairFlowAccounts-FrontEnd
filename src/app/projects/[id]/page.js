@@ -1,49 +1,26 @@
 "use client";
+
 import "./home.css";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
-import { BigNumber } from "bignumber.js";
-import { useRouter, useParams } from "next/navigation";
 import { getProject, getProjectDetails } from "@/axios";
+import {
+  evaluateCompletion,
+  shortenText,
+  weiToEthString,
+} from "@/utils/projectDetails";
+import { useRouter } from "next/navigation";
 
-function weiToEthString(weiString) {
-  // Create a BigNumber from the wei string
-  const wei = new BigNumber(weiString);
-  // Define the conversion factor from wei to ether: 10^18
-  const factor = new BigNumber("1e18");
-  // Divide wei by the factor to get ether and convert it to a string
-  const ether = wei.dividedBy(factor);
-  return ether.toString();
-}
-
-function evaluateCompletion(phase) {
-  const curr = parseInt(phase);
-  const total = 6;
-  const percentage = (curr / total) * 100;
-  return percentage.toFixed(0);
-}
-
-function shortenText(text, maxLength) {
-  if (text.length <= maxLength) {
-    return text;
-  } else {
-    const halfLength = Math.floor((maxLength - 3) / 2);
-    const firstHalf = text.substring(0, halfLength);
-    const secondHalf = text.substring(text.length - halfLength);
-    return firstHalf + "..." + secondHalf;
-  }
-}
-
-export default function Page() {
+export default function Page(props) {
+  const router = useRouter();
   const [blockCount, setBlockCount] = useState(0);
   const [transactions, setTransactions] = useState([]);
   const [data, setData] = useState([]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
-  const { id } = useParams();
+  const { id } = props.params;
+
   const [username, setUsername] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const router = useRouter();
   const [txs, setTxs] = useState([]);
 
   useEffect(() => {
@@ -60,10 +37,7 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const response = await getProjectDetails(id);
-        // console.log("attempting to fetch data");
-        // console.log(response);
         const data = response.data;
-        // console.log("data", data);
         if (data) {
           setProjectTitle(data.projectDetails.title);
           setBlockCount(data.blockCount);
@@ -98,7 +72,6 @@ export default function Page() {
 
   const renderTransactions = () => {
     console.log(transactions);
-
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
