@@ -41,7 +41,7 @@ export default function Page() {
   const [error, setError] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
   const [projectDescription, setProjectDescription] = useState(
-    "Expand to read more about the project specifics, goals, and implementation phases.",
+    "Expand to read more about the project specifics, goals, and implementation phases."
   );
   const [isDescriptionOpen, setDescriptionOpen] = useState(false);
   const router = useRouter();
@@ -84,7 +84,7 @@ export default function Page() {
       blocks.push(
         <a key={i} href="/blocks" className="rounded-rectangle">
           <span className="block-number">#{i}</span>
-        </a>,
+        </a>
       );
     }
 
