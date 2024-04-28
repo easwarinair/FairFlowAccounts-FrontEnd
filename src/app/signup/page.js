@@ -6,6 +6,7 @@ import { useState } from "react";
 import "../login/login.css";
 
 import { RegisterAPICall } from "@/axios";
+import { showErrorToast } from "@/utils/toast";
 
 export default function Page() {
   const [name, setName] = useState("");
@@ -18,50 +19,27 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== retypePassword) {
-      alert("Passwords do not match. Please try again.");
+      showErrorToast("Passwords do not match. Please try again.");
       return;
     }
     setLoading(true);
     try {
       const response = await RegisterAPICall({name, email, password});
-      //const response = await axios.post("/signup", { name, email, password });
       setLoading(false);
       if (response.status === 201) {
-        alert("User registered successfully");
+        showSuccessToast("User registered successfully");
         router.push("/login");
       }
     } catch (error) {
       console.error("Signup error:", error);
       setLoading(false);
       if (error.response && error.response.status === 409) {
-        alert("User already exists. Please choose a different email.");
+        showErrorToast("User already exists. Please choose a different email.");
       } else {
-        alert("An error occurred during signup.");
+        showErrorToast("An error occurred during signup.");
       }
     }
   };
-
-  /*export default function Page() {
-  const router = useRouter()
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const username = e.target.username.value;
-    const password = e.target.password.value;
-    try {
-      const response = await RegisterAPICall({username, password});
-      if (response.status === 201) {
-        alert('User registered successfully');
-        router.push('/login');
-      }
-    } catch (error) {
-      if (error.response && error.response.status === 409) {
-        alert('User already exists. Please choose a different username.');
-      } else {
-        alert('An error occurred during signup.');
-      }
-    }
-  };*/
 
   return (
     <div className="container">

@@ -6,21 +6,27 @@ import { getProjects } from "@/axios";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
+import { showErrorToast } from "@/utils/toast";
 
 export default function Page() {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
   const route = useRouter();
   useEffect(() => {
-    setLoading(true);
-    console.log(
-      "Inside useEffect of projects page, trying to get project data..."
-    );
-    getProjects().then((response) => {
-      console.log(response.data);
-      setProjects(response.data);
-      setLoading(false);
-    });
+    const fetchData = () => {
+      setLoading(true);
+      getProjects()
+        .then((response) => {
+          console.log(response.data);
+          setProjects(response.data);
+          setLoading(false);
+        })
+        .catch((err) => {
+          showErrorToast(err.message || "Failed to fetch projects.");
+        });
+    };
+
+    fetchData();
   }, []);
 
   const onProjectClick = (id, hash) => {
@@ -63,12 +69,11 @@ export default function Page() {
         <span className="select_text">OR Select a project to continue!</span>
         <div className="project">
           {loading && <div className="loading_text">Loading...</div>}
-          {projects.map((project) => {
-            console.log("building project:", project);
+          {projects.map((project, index) => {
             return (
               <div
                 className="project_card"
-                key={project.id}
+                key={index}
                 onClick={() =>
                   onProjectClick(project.contractAddress, project.txHash)
                 }

@@ -11,6 +11,7 @@ import {
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
+import { showErrorToast } from "@/utils/toast";
 
 export default function Page(props) {
   const router = useRouter();
@@ -24,14 +25,11 @@ export default function Page(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const [txs, setTxs] = useState([]);
 
-
-  
-  
   useEffect(() => {
     const fetchData = async () => {
       try {
-        if (!id) return alert("No id");
-        if (!hash) return alert("No hash");
+        if (!id) return showErrorToast("No id");
+        if (!hash) return showErrorToast("No hash");
         const response = await getProjectDetails(id, hash);
         const data = response.data;
         if (data) {
@@ -43,10 +41,12 @@ export default function Page(props) {
         } else {
           console.error("No project data");
           setError("No data found");
+          showErrorToast("No data found");
         }
       } catch (err) {
         console.error("Fetch error:", err);
-        setError(err.message || "Failed to fetch project data");
+        showErrorToast(err.message || "Failed to fetch project data");
+        setError("Error while fetching data");
       }
     };
 
@@ -99,10 +99,10 @@ export default function Page(props) {
       if (blockId > 0 && blockId <= blockCount) {
         router.push(`/blocks/${blockId}`);
       } else {
-        alert("Block number out of range");
+        showErrorToast("Block number out of range");
       }
     } else {
-      alert("Please enter a valid block number");
+      showErrorToast("Please enter a valid block number");
     }
   };
   return (
@@ -201,7 +201,10 @@ export default function Page(props) {
                     </Link>
                   </span>
                   <span>
-                    <Link href="profiles/receiver.html" className="profile-link">
+                    <Link
+                      href="profiles/receiver.html"
+                      className="profile-link"
+                    >
                       <u>{shortenText(transaction.receiver, 12)}</u>
                     </Link>
                   </span>

@@ -3,11 +3,11 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { getUserDataAPI } from "@/axios";
+import { showErrorToast } from "@/utils/toast";
 
 export const getUserData = async () => {
   try {
     const res = await getUserDataAPI();
-    console.log(res)
     if (res.status === 200) return res.data?.user;
     else return false;
   } catch (err) {
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
 
   const router = useRouter();
   const showLogin = () => {
-    alert(
+    showErrorToast(
       "You must be logged in to perform this operation. Please login and try again!"
     );
     router.push("/auth/login");

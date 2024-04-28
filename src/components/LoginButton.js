@@ -2,6 +2,7 @@
 
 import { LogoutAPI } from "@/axios";
 import { useUserContext } from "@/context/UserContext";
+import { showErrorToast } from "@/utils/toast";
 import { useRouter } from "next/navigation";
 
 const LoginButton = () => {
@@ -19,7 +20,7 @@ const LoginButton = () => {
       }
     } catch (err) {
       console.log(err);
-      alert(err.message || "Something went wrong while trying to logout");
+      showErrorToast(err.message || "Something went wrong while trying to logout");
     }
   };
 

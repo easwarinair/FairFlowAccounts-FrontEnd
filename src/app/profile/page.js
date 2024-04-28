@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { ProjectStatusAPICall } from "@/axios";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
+import { showErrorToast } from "@/utils/toast";
 
 export default function Page() {
   const [user, setUser] = useState(null);
@@ -24,6 +25,7 @@ export default function Page() {
       } catch (err) {
         console.log(err);
         setLoading("error");
+        showErrorToast(err.message);
       }
     };
 
@@ -45,6 +47,7 @@ export default function Page() {
         }
       } catch (err) {
         console.log(err);
+        showErrorToast(err.message || "Failed to get profile name.");
       } finally {
         setUser(user);
       }
@@ -56,6 +59,7 @@ export default function Page() {
   // Redirect to login if no user data found
   useEffect(() => {
     if (!user && typeof window !== "undefined") {
+      showErrorToast("Login to perform this action.");
       router.push("/login");
     }
   }, [user]);

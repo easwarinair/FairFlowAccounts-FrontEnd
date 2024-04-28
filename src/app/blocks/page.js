@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./styles.css";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { showErrorToast } from "@/utils/toast";
 
 export default function Page() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -16,10 +17,10 @@ export default function Page() {
       if (blockId > 0 && blockId <= blockCount) {
         router.push(`/blocks/${blockId}`);
       } else {
-        alert("Block number out of range");
+        showErrorToast("Block number out of range");
       }
     } else {
-      alert("Please enter a valid block number");
+      showErrorToast("Please enter a valid block number");
     }
   };
 

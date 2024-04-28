@@ -5,6 +5,7 @@ import { BigNumber } from "bignumber.js";
 import { useRouter } from "next/navigation";
 import { ProjectStatusAPICall } from "@/axios";
 import Link from "next/link";
+import { showErrorToast } from "@/utils/toast";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -51,13 +52,10 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const response = await ProjectStatusAPICall();
-        console.log("attempting to fetch data");
-        console.log(response);
         if (response.status !== 200) {
           throw new Error(`HTTP status ${response.status}`);
         }
         const { data } = response;
-        console.log("data received", data);
 
         if (data) {
           console.log("setting up....", data.result.title);
@@ -69,10 +67,12 @@ export default function Page() {
         } else {
           console.error("No project data");
           setError("No data found");
+          showErrorToast("No data found");
         }
       } catch (err) {
         console.error("Fetch error:", err);
         setError(err.message || "Failed to fetch project data");
+        showErrorToast(err.message || "Failed to fetch project data");
       }
     };
 
@@ -120,10 +120,10 @@ export default function Page() {
       if (blockId > 0 && blockId <= blockCount) {
         router.push(`/blocks`);
       } else {
-        alert("Block number out of range");
+        showErrorToast("Block number out of range");
       }
     } else {
-      alert("Please enter a valid block number");
+      showErrorToast("Please enter a valid block number");
     }
   };
 

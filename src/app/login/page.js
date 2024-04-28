@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./login.css";
 import { LoginAPICall } from "@/axios";
 import { useRouter } from "next/navigation";
+import { showErrorToast, showSuccessToast } from "@/utils/toast";
 
 export default function Page() {
   const [email, setEmail] = useState("");
@@ -18,26 +19,25 @@ export default function Page() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!isValidEmail(email)) {
-      alert("Please enter a valid email address.");
+      showErrorToast("Please enter a valid email address.");
       return;
     }
     setLoading(true);
     try {
       const res = await LoginAPICall({ email, password });
       if (res.data.id) {
-        //sessionStorage.setItem('user', JSON.stringify({ id: res.data.id, username: res.data.name }));
+        showSuccessToast("Logged in successfully.")
         router.push("/projects");
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === "Email not found") {
-        alert("Email not found. Please sign up.");
+        showErrorToast("Email not found. Please sign up.");
       } else {
-        alert("Invalid credentials");
+        showErrorToast("Invalid credentials");
       }
     } catch (err) {
-      console.log(err);
       const errorMessage =
-        err.response?.data || "An error occurred during login.";
-      alert(errorMessage);
+        err.response?.data?.error || "An error occurred during login.";
+      showErrorToast(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -97,6 +97,8 @@ export default function Page() {
               Login
             </button>
           </form>
+          <br />
+          <br />
           <p>
             Don't have an account?{" "}
             <a
