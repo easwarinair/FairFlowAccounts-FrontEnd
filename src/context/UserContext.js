@@ -31,7 +31,7 @@ export const UserProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (!signedIn.status) checkSignedIn();
+    checkSignedIn();
   }, []);
 
   const checkout = () =>

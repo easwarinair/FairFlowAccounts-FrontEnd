@@ -25,6 +25,7 @@ const LoginButton = () => {
       );
     }
   };
+  console.log(signedIn);
 
   return (
     <div className="login-button">

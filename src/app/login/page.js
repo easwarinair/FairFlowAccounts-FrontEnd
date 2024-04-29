@@ -4,6 +4,7 @@ import { useState } from "react";
 import "./login.css";
 import { LoginAPICall } from "@/axios";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 import { showErrorToast, showSuccessToast } from "@/utils/toast";
 
 export default function Page() {
@@ -11,6 +12,7 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { checkSignedIn, signedIn } = useUserContext();
 
   const isValidEmail = (email) => {
     return /\S+@\S+\.\S+/.test(email);
@@ -27,7 +29,9 @@ export default function Page() {
       const res = await LoginAPICall({ email, password });
       if (res.data.id) {
         showSuccessToast("Logged in successfully.");
-        router.push("/projects");
+        await checkSignedIn();
+        console.log(signedIn);
+        // router.push("/projects");
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === "Email not found") {
         showErrorToast("Email not found. Please sign up.");
