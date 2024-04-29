@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import "../login/login.css";
+import "../login/login.module.css";
 
 import { RegisterAPICall } from "@/axios";
 import { showErrorToast } from "@/utils/toast";
