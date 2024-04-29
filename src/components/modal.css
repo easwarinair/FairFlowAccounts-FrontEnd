@@ -12,10 +12,10 @@
   }
   
   .close-button {
-    float: right; /* Align the button to the right */
+    float: right; 
     padding: 8px 16px;
     margin: 8px;
-    background: #ca047b; /* Red background for visibility */
+    background: #ca047b;
     color: white;
     border: none;
     border-radius: 4px;

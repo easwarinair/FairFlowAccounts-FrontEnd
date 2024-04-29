@@ -1,0 +1,96 @@
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 1rem;
+    
+  }
+  
+  .fairflow {
+    color: #CA047B; 
+    font-weight: bold;
+    font-size: 40px;
+  }
+  
+  .accounts {
+    color: #000; 
+    font-weight: bold;
+    font-size: 40px;
+  }
+  
+  .subheader {
+    color: #000;
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 30px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    font-size: 15px;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  .label {
+    margin-bottom: 10px;
+    color: #000;
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-weight: bold;
+}
+
+  
+  
+  .input,
+  .textarea {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 2px solid #ca047b;;
+    border-radius: 4px;
+    width: 100%;
+  }
+  
+  .input::placeholder,
+  .textarea::placeholder {
+    color: #999;
+  }
+  
+  .textarea {
+    height: 100px;
+  }
+  
+  .phases {
+    margin-bottom: 20px;
+  }
+  
+  .addButton , .deleteButton{
+    background-color: #ca047b;
+    color: white;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .submitButton {
+    background-color: #ca047b;
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .submitButton:hover {
+    background-color: #cc0099;
+  }
+  
