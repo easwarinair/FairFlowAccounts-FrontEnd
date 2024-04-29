@@ -1,0 +1,34 @@
+.transaction-container {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    font-family: Arial, sans-serif;
+
+}
+
+.transaction-button, .transaction-button1 {
+    background-color:  #ca047b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.transaction-button:hover, .transaction-button1:hover {
+    background-color:  #ca047b;}
+
+.input {
+    padding: 10px;
+    margin: 10px 0;
+    display: block;
+    width: 95%;
+}
+
+.transaction-text, .transaction-text1, .transaction-text2 {
+    font-weight: bold; 
+    display: block; 
+    margin-bottom: 5px; 
+}
