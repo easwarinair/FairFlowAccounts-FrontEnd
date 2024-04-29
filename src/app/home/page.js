@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { ProjectStatusAPICall } from "@/axios";
 import Link from "next/link";
 import { showErrorToast } from "@/utils/toast";
+import LoginButton from "@/components/LoginButton";
 
 function weiToEthString(weiString) {
   // Create a BigNumber from the wei string
@@ -149,11 +150,7 @@ export default function Page() {
               />
             </form>
           </div>
-          <div className="login-button">
-            <Link href="/login">
-              <button style={{ color: "white" }}>Login</button>
-            </Link>
-          </div>
+          <LoginButton />
         </div>
       </header>
       <main>

@@ -2,13 +2,13 @@
 
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
-import { getUserDataAPI } from "@/axios";
+import { LogoutAPI, getUserDataAPI } from "@/axios";
 import { showErrorToast } from "@/utils/toast";
 
 export const getUserData = async () => {
   try {
     const res = await getUserDataAPI();
-    if (res.status === 200) return res.data?.user;
+    if (res.status === 200) return res.data;
     else return false;
   } catch (err) {
     return false;
@@ -30,9 +30,9 @@ export const UserProvider = ({ children }) => {
     else setSignedIn({ status: false, data: null, fetched: true });
   };
 
-  useEffect(() => {
-    checkSignedIn();
-  }, []);
+  // useEffect(() => {
+  //   checkSignedIn();
+  // }, []);
 
   const checkout = () =>
     setSignedIn({ status: false, data: null, fetched: false });
@@ -45,9 +45,26 @@ export const UserProvider = ({ children }) => {
     router.push("/auth/login");
   };
 
+  const handleLogout = async () => {
+    if (typeof window === "undefined") return;
+    try {
+      const res = await LogoutAPI();
+      if (res.status === 200) {
+        router.push("/login");
+      } else {
+        throw new Error(res.data.error || "Logout Error");
+      }
+    } catch (err) {
+      console.log(err);
+      showErrorToast(
+        err.message || "Something went wrong while trying to logout"
+      );
+    }
+  };
+
   return (
     <UserContext.Provider
-      value={{ signedIn, checkSignedIn, checkout, showLogin }}
+      value={{ signedIn, checkSignedIn, checkout, showLogin, handleLogout }}
     >
       {children}
     </UserContext.Provider>

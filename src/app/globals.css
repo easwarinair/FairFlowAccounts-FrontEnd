@@ -19,6 +19,22 @@ body {
   align-items: start;
 }
 
+.mag {
+  color: #ca047b;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
+.black {
+  color: #000;
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+}
+
 /* login button */
 .login-button {
   display: flex;

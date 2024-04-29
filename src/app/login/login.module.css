@@ -4,7 +4,7 @@
   width: 100vw;
 }
 
-.form-container {
+.form_container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,7 +12,7 @@
   padding: 20px;
 }
 
-.left-panel {
+.left_panel {
   background-color: white;
   flex: 1;
   display: flex;
@@ -41,7 +41,7 @@
   line-height: normal;
 }
 
-.right-panel {
+.right_panel {
   background-color: white;
   flex: 1;
   display: flex;
@@ -50,7 +50,7 @@
   align-items: center;
 }
 
-.partition-line {
+.partition_line {
   border-right: 4px solid #ca047b;
   height: 100vh;
 }
@@ -61,38 +61,24 @@
   text-align: center;
 }
 
-.login-form {
+.login_form {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-input {
+.input {
   padding: 10px;
   margin: 10px;
   width: 250px;
   border-radius: 10px;
 }
 
-button {
-  padding: 10px 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 10px;
-  background-color: #ca047b;
-  color: white;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-button:hover {
+.submit_btn:hover {
   background-color: #ddd;
 }
 
-.block-container {
+.block_container {
   display: flex;
   gap: 30px;
 }
@@ -115,7 +101,7 @@ button:hover {
   box-shadow: 4px 8px 14.4px 0px rgba(0, 0, 0, 0.18);
 }
 
-.password-form {
+.password_form {
   display: flex;
   justify-content: space-between;
   width: 300px;
@@ -123,7 +109,7 @@ button:hover {
   gap: 5px;
 }
 
-.password-form input {
+.password_form input {
   width: 40px;
   height: 40px;
   text-align: center;
@@ -132,7 +118,7 @@ button:hover {
   border-radius: 5px;
 }
 
-.form-group {
+.form_group {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -140,17 +126,17 @@ button:hover {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.form_group label {
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form_group input {
   width: 90%;
   padding: 8px;
   box-sizing: border-box;
 }
 
-.submit-btn {
+.submit_btn {
   display: inline-block;
   width: auto;
   padding: 10px 20px;
@@ -163,7 +149,7 @@ button:hover {
   border-radius: 5px;
 }
 
-.form-group {
+.form_group {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -171,17 +157,17 @@ button:hover {
   margin-bottom: 15px;
 }
 
-.form-group label {
+.form_group label {
   margin-bottom: 5px;
 }
 
-.form-group input {
+.form_group input {
   width: 90%;
   padding: 8px;
   box-sizing: border-box;
 }
 
-.submit-btn {
+.submit_btn {
   display: inline-block;
   width: auto;
   padding: 10px 20px;

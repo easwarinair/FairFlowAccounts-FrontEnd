@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import "./login.css";
+import styles from "./login.module.css";
 import { LoginAPICall } from "@/axios";
 import { useRouter } from "next/navigation";
 import { useUserContext } from "@/context/UserContext";
@@ -29,9 +29,7 @@ export default function Page() {
       const res = await LoginAPICall({ email, password });
       if (res.data.id) {
         showSuccessToast("Logged in successfully.");
-        await checkSignedIn();
-        console.log(signedIn);
-        // router.push("/projects");
+        router.push("/projects");
         /*router.push(`/profile?user=${res.data.id}`);*/
       } else if (res.data.message === "Email not found") {
         showErrorToast("Email not found. Please sign up.");
@@ -48,31 +46,32 @@ export default function Page() {
   };
 
   return (
-    <div className="container">
-      <div className="left-panel">
-        <h1 className="mag">FairFlow</h1>
-        <h2 className="black">Accounts</h2>
-        <div className="block-container">
-          <div className="block"></div>
-          <div className="block"></div>
-          <div className="block"></div>
+    <div className={styles.container}>
+      <div className={styles.left_panel}>
+        <h1 className={styles.mag}>FairFlow</h1>
+        <h2 className={styles.black}>Accounts</h2>
+        <div className={styles.block_container}>
+          <div className={styles.block}></div>
+          <div className={styles.block}></div>
+          <div className={styles.block}></div>
         </div>
       </div>
 
-      <div className="partition-line"></div>
+      <div className={styles.partition_line}></div>
 
-      <div className="right-panel">
-        <div className="welcome">
+      <div className={styles.right_panel}>
+        <div className={styles.welcome}>
           <h2>Welcome!</h2>
         </div>
 
-        <div className="form-container">
+        <div className={styles.form_container}>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="email" style={{ fontWeight: "bold" }}>
                 Email
               </label>
               <input
+                className="input"
                 type="email"
                 id="email"
                 name="email"
@@ -83,11 +82,12 @@ export default function Page() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="password" style={{ fontWeight: "bold" }}>
                 Password
               </label>
               <input
+                className="input"
                 type="password"
                 id="password"
                 name="password"
@@ -97,7 +97,11 @@ export default function Page() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="submit-btn" disabled={loading}>
+            <button
+              type="submit"
+              className={styles.submit_btn}
+              disabled={loading}
+            >
               Login
             </button>
           </form>
@@ -106,7 +110,7 @@ export default function Page() {
           <p>
             Don't have an account?{" "}
             <a
-              className="link"
+              className={styles.link}
               style={{ color: "#CA047B", fontWeight: "bold" }}
               href="/signup"
             >
