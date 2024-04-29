@@ -10,6 +10,16 @@ function weiToEthString(weiString) {
   return ether.toString();
 }
 
+function ethToWeiString(ethString) {
+  // Create a BigNumber from the ETH string
+  const eth = new BigNumber(ethString);
+  // Define the conversion factor from ether to wei: 10^18
+  const factor = new BigNumber("1e18");
+  // Multiply ETH by the factor to get wei and convert it to a string
+  const wei = eth.multipliedBy(factor);
+  return wei.toString();
+}
+
 function evaluateCompletion(phase) {
   const curr = parseInt(phase);
   const total = 6;
@@ -28,4 +38,4 @@ function shortenText(text, maxLength) {
   }
 }
 
-export { shortenText, evaluateCompletion, weiToEthString };
+export { shortenText, evaluateCompletion, weiToEthString, ethToWeiString };

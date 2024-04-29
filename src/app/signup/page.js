@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-import "../login/login.css";
+import styles from "../login/login.module.css";
 
 import { RegisterAPICall } from "@/axios";
 import { showErrorToast } from "@/utils/toast";
@@ -42,31 +42,31 @@ export default function Page() {
   };
 
   return (
-    <div className="container">
-      <div className="left-panel">
+    <div className={styles.container}>
+      <div className={styles.left_panel}>
         <span>
-          <h1 className="mag">FairFlow</h1>
+          <h1 className={styles.mag}>FairFlow</h1>
           <br />
         </span>
         <span>
-          <h2 className="black">Accounts</h2>
+          <h2 className={styles.black}>Accounts</h2>
         </span>
-        <div className="block-container">
-          <div className="block"></div>
-          <div className="block"></div>
-          <div className="block"></div>
+        <div className={styles.block_container}>
+          <div className={styles.block}></div>
+          <div className={styles.block}></div>
+          <div className={styles.block}></div>
         </div>
       </div>
 
-      <div className="partition-line"></div>
-      <div className="right-panel">
-        <div className="welcome">
+      <div className={styles.partition_line}></div>
+      <div className={styles.right_panel}>
+        <div className={styles.welcome}>
           <h2>Sign Up!</h2>
         </div>
 
-        <div className="form-container">
+        <div className={styles.form_container}>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="name" style={{ fontWeight: "bold" }}>
                 Name
               </label>
@@ -81,7 +81,7 @@ export default function Page() {
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="email" style={{ fontWeight: "bold" }}>
                 Email
               </label>
@@ -96,7 +96,7 @@ export default function Page() {
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="password" style={{ fontWeight: "bold" }}>
                 Password
               </label>
@@ -110,7 +110,7 @@ export default function Page() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="form-group">
+            <div className={styles.form_group}>
               <label htmlFor="retypePassword" style={{ fontWeight: "bold" }}>
                 Retype Password
               </label>
@@ -124,13 +124,17 @@ export default function Page() {
                 onChange={(e) => setRetypePassword(e.target.value)}
               />
             </div>
-            <button type="submit" className="submit-btn" disabled={loading}>
+            <button
+              type="submit"
+              className={styles.submit_btn}
+              disabled={loading}
+            >
               Sign Up
             </button>
             <p>
               Already have an account?{" "}
               <a
-                className="link"
+                className={styles.link}
                 style={{ color: "#CA047B", fontWeight: "bold" }}
                 href="/login"
               >
