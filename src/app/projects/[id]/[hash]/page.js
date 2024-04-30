@@ -17,7 +17,7 @@ export default function Page(props) {
   const router = useRouter();
   const [blockCount, setBlockCount] = useState(0);
   const [transactions, setTransactions] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(["false"]);
   const [projectTitle, setProjectTitle] = useState("Loading project...");
   const [error, setError] = useState("");
   const { id, hash } = props.params;
@@ -32,11 +32,11 @@ export default function Page(props) {
         if (!hash) return showErrorToast("No hash");
         const response = await getProjectDetails(id, hash);
         const data = response.data;
+        console.log(data);
         if (data) {
           setProjectTitle(data.projectDetails.title);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
-          console.log(data.transactions);
           setData(data);
           localStorage.setItem("txs", JSON.stringify(data.transactions));
         } else {
@@ -56,7 +56,7 @@ export default function Page(props) {
 
   const renderBlocks = () => {
     let blocks = [];
-    for (let i = 1; i <= blockCount; i++) {
+    for (let i = blockCount; i >= 1; i--) {
       blocks.push(
         <div className="render-block" key={i} onClick={() => onBlockClick(i)}>
           <div className="rounded-rectangle"></div>
@@ -107,9 +107,8 @@ export default function Page(props) {
     }
   };
 
-  
-  const handleMakeTransactionClick = () => {
-    router.push('/transactions');
+  const handleMakeTransactionClick = (address) => {
+    router.push(`/transactions/${address}`);
   };
 
   return (
@@ -182,11 +181,20 @@ export default function Page(props) {
           </div>
 
           <div className="transactions-header">
-  <h3 className="project_subheading">Latest Transactions</h3>
-  <button onClick={handleMakeTransactionClick} className="make-transactions-button">
-    Make Transactions
-  </button>
-</div>
+            <h3 className="project_subheading">Latest Transactions</h3>
+            {data[0] !== "false" ? (
+              <button
+                onClick={() => {
+                  handleMakeTransactionClick(`${id}`);
+                }}
+                className="make-transactions-button"
+              >
+                Make Transactions
+              </button>
+            ) : (
+              <div></div>
+            )}
+          </div>
           <div className="rectangle-container">{renderBlocks()}</div>
           {/* <button onClick={router.push(`/transactions`)}></button> */}
 
@@ -203,23 +211,25 @@ export default function Page(props) {
             <span>Timestamp</span>
           </div>
           {transactions && transactions.length > 0 ? (
-            transactions.map((transaction, index) => {
+            transactions.toReversed().map((transaction, index) => {
               return (
                 <div key={index} className="transaction-details_1">
-                  <span>{index + 1}</span>
+                  <span>{transactions.length - index}</span>
                   <span>{weiToEthString(transaction.val)} ETH</span>
                   <span>
-                  <u className="profile-link" >{shortenText(transaction.sender, 12)}</u>
+                    <u className="profile-link">
+                      {shortenText(transaction.sender, 12)}
+                    </u>
                     {/*<Link href="profiles/sender.html" className="profile-link">
                       <u>{shortenText(transaction.sender, 12)}</u>
               </Link>*/}
                   </span>
                   <span>
-                   
-                   <u className="profile-link">{shortenText(transaction.receiver, 12)}</u>
-
+                    <u className="profile-link">
+                      {shortenText(transaction.receiver, 12)}
+                    </u>
                   </span>
-                  <span>{new Date().toLocaleDateString()}</span>
+                  <span>{transaction.timestamp}</span>
                 </div>
               );
             })

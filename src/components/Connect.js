@@ -37,12 +37,12 @@ const ConnectButton = ({ projectData }) => {
         ethers.parseEther(projectData.cost).toString(),
         projectData.phases
       );
-      console.log("Deploying log...");
+      console.log("Deploying...");
       const tx = await contract.deploymentTransaction();
       const txRec = await contract.deploymentTransaction().wait(1);
       console.log("Transaction response: ", tx, "Transaction Receipt: ", txRec);
       console.log(tx.hash, txRec.contractAddress);
-      const res = deployContract({
+      const res = await deployContract({
         title: projectData.title,
         contractAddress: txRec.contractAddress,
         txHash: tx.hash,
