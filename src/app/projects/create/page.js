@@ -1,14 +1,19 @@
-"use client"
-import React, { useState } from 'react';
-import styles from './styles.module.css';
+"use client";
+import React, { useState } from "react";
+import styles from "./styles.module.css";
+import getConstants from "@/constants/FairFlow";
+import { data } from "@/constants/FairFlowData";
+import ConnectButton from "@/components/Connect";
 
 const CreateProject = () => {
   const [project, setProject] = useState({
-    title: '',
-    description: '',
-    phases: [''],
-    cost: ''
+    title: "",
+    description: "",
+    phases: [""],
+    cost: "",
   });
+
+  const [phaseCount, setPhaseCount] = useState(1);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -22,21 +27,30 @@ const CreateProject = () => {
   };
 
   const addPhase = () => {
-    setProject({ ...project, phases: [...project.phases, ''] });
+    setProject({ ...project, phases: [...project.phases, ""] });
+    setPhaseCount(phaseCount + 1);
   };
-
-  
+  const removePhase = () => {
+    if (project.phases.length > 0) {
+      const newPhases = project.phases.slice(0, project.phases.length - 1);
+      setProject({ ...project, phases: newPhases });
+      setPhaseCount(phaseCount - 1);
+    }
+  };
 
   const submitProject = (e) => {
     e.preventDefault();
     console.log(project);
-    
   };
+
+  async function deployContract() {
+    const signer = getSigner();
+  }
 
   return (
     <div className={styles.container}>
-       <h1 className={styles.header}>
-        <span className={styles.fairflow}>FairFlow   </span>
+      <h1 className={styles.header}>
+        <span className={styles.fairflow}>FairFlow </span>
         <span className={styles.accounts}>Accounts</span>
       </h1>
       <h2 className={styles.subheader}>Create a new project</h2>
@@ -47,6 +61,7 @@ const CreateProject = () => {
           <input
             type="text"
             name="title"
+            required
             value={project.title}
             onChange={handleInputChange}
             className={styles.input}
@@ -57,6 +72,7 @@ const CreateProject = () => {
           Project Description
           <textarea
             name="description"
+            required
             value={project.description}
             onChange={handleInputChange}
             className={styles.textarea}
@@ -69,29 +85,46 @@ const CreateProject = () => {
               type="text"
               key={index}
               value={phase}
+              required
               onChange={(e) => handlePhaseChange(index, e.target.value)}
               placeholder={`Phase #${index + 1}`}
               className={styles.input}
             />
           ))}
-          <button type="button" onClick={addPhase} className={styles.addButton}>+</button>
+          <button type="button" onClick={addPhase} className={styles.addButton}>
+            +
+          </button>
+          <div></div>
+          {phaseCount > 1 ? (
+            <button
+              type="button"
+              onClick={removePhase}
+              className={styles.addButton}
+            >
+              -
+            </button>
+          ) : (
+            <div></div>
+          )}
         </div>
 
         <label className={styles.label}>
-          Expected Cost (in Rupees)
+          Expected Cost (in ETH)
           <input
             type="text"
             name="cost"
+            required
             value={project.cost}
             onChange={handleInputChange}
             className={styles.input}
           />
         </label>
-
-        <button type="submit" className={styles.submitButton}>Submit</button>
+        <ConnectButton projectData={project} />
+        <button type="submit" className={styles.submitButton}>
+          Submit
+        </button>
       </form>
     </div>
   );
 };
-
 export default CreateProject;

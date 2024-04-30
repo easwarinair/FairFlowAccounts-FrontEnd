@@ -22,3 +22,5 @@ export const getProjectDetails = (id, hash) =>
   api.get(`/projects/${id}/${hash}`, { withCredentials: true });
 export const fundProject = (data) =>
   api.post("/transact/fund", data, { withCredentials: true });
+export const deployContract = (data) =>
+  api.post("/deployContract", data, { withCredentials: true });
