@@ -36,6 +36,7 @@ export default function Page(props) {
           setProjectTitle(data.projectDetails.title);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
+          console.log(data.transactions);
           setData(data);
           localStorage.setItem("txs", JSON.stringify(data.transactions));
         } else {
@@ -176,6 +177,7 @@ export default function Page(props) {
 
           <h3 className="project_subheading">Latest Transactions</h3>
           <div className="rectangle-container">{renderBlocks()}</div>
+          {/* <button onClick={router.push(`/transactions`)}></button> */}
 
           {/*<div className="project-status" id="project_status">
           Project status
