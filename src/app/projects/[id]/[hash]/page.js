@@ -209,17 +209,15 @@ export default function Page(props) {
                   <span>{index + 1}</span>
                   <span>{weiToEthString(transaction.val)} ETH</span>
                   <span>
-                    <Link href="profiles/sender.html" className="profile-link">
+                  <u className="profile-link" >{shortenText(transaction.sender, 12)}</u>
+                    {/*<Link href="profiles/sender.html" className="profile-link">
                       <u>{shortenText(transaction.sender, 12)}</u>
-                    </Link>
+              </Link>*/}
                   </span>
                   <span>
-                    <Link
-                      href="profiles/receiver.html"
-                      className="profile-link"
-                    >
-                      <u>{shortenText(transaction.receiver, 12)}</u>
-                    </Link>
+                   
+                   <u className="profile-link">{shortenText(transaction.receiver, 12)}</u>
+
                   </span>
                   <span>{new Date().toLocaleDateString()}</span>
                 </div>
