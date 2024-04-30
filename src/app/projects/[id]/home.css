@@ -38,7 +38,7 @@
 .search-bar {
   margin: 0 auto;
   width: 50%;
-  background-color: #e4d1dd;
+ 
   border: 2px solid #ccc;
   border-radius: 15px;
   overflow: hidden;
@@ -94,8 +94,15 @@ main {
 }
 
 .project-details_1 span {
-  font-size: 53px;
+  font-size: 35px;
   color: #ca047b;
+}
+
+.transactions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  margin-bottom: 20px;  
 }
 
 .project_subheading {
@@ -105,6 +112,19 @@ main {
   font-weight: 900;
   line-height: normal;
   margin-left: 80px;
+  margin-top: 40px;
+}
+
+
+.make-transactions-button {
+  padding: 10px 20px;
+  background-color: #ca047b; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-left: 20px; 
+  
 }
 
 .rectangle-container {
@@ -189,3 +209,4 @@ hr {
   text-decoration: none;
   color: #ca047b;
 }
+

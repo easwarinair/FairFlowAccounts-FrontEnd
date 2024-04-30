@@ -106,6 +106,12 @@ export default function Page(props) {
       showErrorToast("Please enter a valid block number");
     }
   };
+
+  
+  const handleMakeTransactionClick = () => {
+    router.push('/transactions');
+  };
+
   return (
     <>
       <div className="home-container">
@@ -142,7 +148,7 @@ export default function Page(props) {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button type="submit">Search</button>
+                {/*<button type="submit">Search</button>*/}
               </form>
             </div>
             <LoginButton />
@@ -175,7 +181,12 @@ export default function Page(props) {
             )}
           </div>
 
-          <h3 className="project_subheading">Latest Transactions</h3>
+          <div className="transactions-header">
+  <h3 className="project_subheading">Latest Transactions</h3>
+  <button onClick={handleMakeTransactionClick} className="make-transactions-button">
+    Make Transactions
+  </button>
+</div>
           <div className="rectangle-container">{renderBlocks()}</div>
           {/* <button onClick={router.push(`/transactions`)}></button> */}
 
