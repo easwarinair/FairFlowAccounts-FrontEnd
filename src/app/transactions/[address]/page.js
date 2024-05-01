@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import "./styles.css";
 import { getProjects } from "@/axios";
+import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
@@ -12,6 +13,7 @@ import Modal from "@/components/Modal";
 
 export default function Page(props) {
   const [transactions, setTransactions] = useState([]);
+  const [contractBalance, setContractBalance] = useState(undefined);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState({});
@@ -26,8 +28,8 @@ export default function Page(props) {
           details: {
             contractAddress: contractAddress,
             txTitle: "Fund the project",
-            textinputPlaceholder: "Enter the amount (in Rupees)",
-            inputLabel: "Amount",
+            textinputPlaceholder: "1",
+            inputLabel: "Enter the amount (in ETH)",
             connectButton: "Connect Wallet",
             sendButton: "Fund project",
             showInput: true,
@@ -112,16 +114,27 @@ export default function Page(props) {
     getTransactions(0);
   }, []);
 
+  useEffect(() => {
+    getBalance();
+  }, []);
   const handleTransactionClick = (transaction) => {
     setCurrentTransaction(transaction.details);
     setIsModalOpen(true);
   };
 
-  const onProjectClick = (id, hash) => {
-    route.push(`/projects/${id}/${hash}`);
+  const getBalance = async () => {
+    if (typeof window.ethereum !== "undefined") {
+      try {
+        await ethereum.request({ method: "eth_requestAccounts" });
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const balance = await provider.getBalance(contractAddress);
+        const formattedBalance = ethers.formatUnits(balance.toString());
+        setContractBalance(formattedBalance.toString());
+      } catch (e) {
+        console.log(e);
+      }
+    }
   };
-
-  console.log("Transactions are:", transactions);
 
   return (
     <>
@@ -133,8 +146,19 @@ export default function Page(props) {
           </Link>
         </div>
       </header>
+      {typeof contractBalance !== "undefined" && (
+        <div className="balance-card">
+          <span>Contract Balance: </span>
+          <strong>{contractBalance} ETH</strong>
+        </div>
+      )}
       <div className="center">
-        <div className="welcome">Available Transactions</div>
+        {typeof contractBalance !== "undefined" ? (
+          <div className="welcome">Available Transactions</div>
+        ) : (
+          <div className="welcome">Loading...</div>
+        )}
+
         <div className="project">
           {transactions.map((transaction, index) => {
             return (
@@ -142,18 +166,20 @@ export default function Page(props) {
                 className="project_card"
                 key={index}
                 onClick={() => handleTransactionClick(transaction)}
-
-                // onClick={() =>
-                //   onProjectClick(project.contractAddress, contractAddress, project.txHash)
-                // }
               >
-                <h3 className="block-heading">{transaction.title}</h3>{" "}
+                <h3 className="block-heading">{transaction.title}</h3>
               </div>
             );
           })}
         </div>
       </div>
-      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={async () => {
+          await getBalance();
+          setIsModalOpen(false);
+        }}
+      >
         <Transaction key={currentTransaction.txTitle} {...currentTransaction} />
       </Modal>
     </>

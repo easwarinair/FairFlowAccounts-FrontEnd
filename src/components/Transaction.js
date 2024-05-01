@@ -16,6 +16,8 @@ const Transaction = (props) => {
   const [signer, setSigner] = useState({ address: undefined });
   const [txProgress, setTxProgress] = useState({ status: "Idle", hash: null });
   const [formValue, setFormValue] = useState(`${props.textinputPlaceholder}`);
+  const [fundPurpose, setFundPurpose] = useState(undefined);
+  const [recipientAddress, setRecipientAddress] = useState(undefined);
 
   useEffect(() => {
     if (typeof window.ethereum !== "undefined") {
@@ -56,7 +58,7 @@ const Transaction = (props) => {
     }
   }
 
-  async function makeTransaction(value, signer, txTitle) {
+  async function makeTransaction(value, signer, txTitle, address, purpose) {
     const abi = data.abi;
     const contract = new ethers.Contract(props.contractAddress, abi, signer);
 
@@ -83,6 +85,7 @@ const Transaction = (props) => {
           showErrorToast("An error has occured!");
           console.log(error);
         }
+        break;
 
       case "Complete Phase":
         try {
@@ -93,16 +96,23 @@ const Transaction = (props) => {
           showErrorToast("An error has occured!");
           console.log(error);
         }
+        break;
 
       case "Send Funds":
+        const recAddress = checkAddress(address);
         try {
-          const tx = await contract.completePhase();
+          const tx = await contract.sendFunds(
+            recAddress,
+            ethers.parseEther(value),
+            purpose
+          );
           await tx.wait();
           transactionSuccess(tx.hash);
         } catch (error) {
           showErrorToast("An error has occured!");
           console.log(error);
         }
+        break;
 
       case "Add Manager":
         const addressToAdd = checkAddress(value);
@@ -114,6 +124,7 @@ const Transaction = (props) => {
           showErrorToast("An error has occured!");
           console.log(error);
         }
+        break;
 
       case "Remove Manager":
         const addressToRemove = checkAddress(value);
@@ -125,6 +136,7 @@ const Transaction = (props) => {
           showErrorToast("An error has occured!");
           console.log(error);
         }
+        break;
 
       default:
         break;
@@ -136,7 +148,7 @@ const Transaction = (props) => {
       <div className="transaction-container1">
         <span className="transaction-text">{props.txTitle}</span>
         <div className="transaction-container2"></div>
-        {props.inputLabel ? (
+        {props.inputLabel && (
           <div className="transaction-container3">
             <span className="transaction-text1">{props.inputLabel}</span>
             <input
@@ -148,8 +160,32 @@ const Transaction = (props) => {
               onChange={(e) => setFormValue(e.target.value)}
             />
           </div>
-        ) : (
-          <div></div>
+        )}
+        {props.txTitle === "Send funds outside the project" && (
+          <>
+            <div className="transaction-container3">
+              <span className="transaction-text1">To Address</span>
+              <input
+                type="text"
+                placeholder="Enter recipient address"
+                className="input transaction-textinput"
+                required
+                value={recipientAddress}
+                onChange={(e) => setRecipientAddress(e.target.value)}
+              />
+            </div>
+            <div className="transaction-container3">
+              <span className="transaction-text1">Purpose</span>
+              <input
+                type="text"
+                placeholder="Purpose of the transaction"
+                className="input transaction-textinput"
+                required
+                value={fundPurpose}
+                onChange={(e) => setFundPurpose(e.target.value)}
+              />
+            </div>
+          </>
         )}
         <div className="transaction-container4">
           <span className="transaction-text2">{props.account1}</span>
@@ -178,7 +214,13 @@ const Transaction = (props) => {
             onClick={() => {
               if (hasMetamask && isConnected) {
                 setTxProgress({ status: "Waiting", hash: null });
-                makeTransaction(formValue, signer, props.sendButton);
+                makeTransaction(
+                  formValue,
+                  signer,
+                  props.sendButton,
+                  recipientAddress,
+                  fundPurpose
+                );
               } else if (hasMetamask && !isConnected) {
                 showErrorToast("Connect your Metamask account to proceed!");
               } else {

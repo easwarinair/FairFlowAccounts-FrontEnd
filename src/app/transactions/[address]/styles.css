@@ -154,3 +154,16 @@ input {
   justify-content: center;
   margin-top: 10px;
 }
+
+.balance-card {
+  position: absolute;
+  top: 20px;      
+  right: 20px;    
+  width: 200px;   
+  padding: 10px;  
+  background-color: #f0f0f0; 
+  border-radius: 5px; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  text-align: center; 
+  z-index: 1000; 
+}
