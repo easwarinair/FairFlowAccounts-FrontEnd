@@ -45,6 +45,22 @@ export default function BlockDetails(props) {
         </div>
       </div>
     );
+  } else if (props.type == "updatePhase(string)") {
+    return (
+      <div>
+        <div className="transactionTitleBlock">
+          <span className="transactionTitle">Phase Updated</span>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">Updation marked by: </span>
+          <EtherscanLink type="address">{props.details.sender}</EtherscanLink>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">Latest Update: </span>
+          <EtherscanLink type="address">{props.details.arg}</EtherscanLink>
+        </div>
+      </div>
+    );
   } else if (props.type == "sendFunds(address,uint256,string)") {
     const args = props.details.arg.split(",");
     return (
@@ -69,6 +85,38 @@ export default function BlockDetails(props) {
         <div className="blockDetailTitleBlock">
           <span className="blockDetailTitle">Purpose of Fund: </span>
           <span>{args[2]} </span>
+        </div>
+      </div>
+    );
+  } else if (props.type == "addManager(address)") {
+    return (
+      <div>
+        <div className="transactionTitleBlock">
+          <span className="transactionTitle">New Fund Manager Added</span>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">New Manager Added By: </span>
+          <EtherscanLink type="address">{props.details.sender}</EtherscanLink>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">New Manager Address: </span>
+          <EtherscanLink type="address">{props.details.arg}</EtherscanLink>
+        </div>
+      </div>
+    );
+  } else if (props.type == "removeManager(address)") {
+    return (
+      <div>
+        <div className="transactionTitleBlock">
+          <span className="transactionTitle">Fund Manager Removed</span>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">Manager Removed By: </span>
+          <EtherscanLink type="address">{props.details.sender}</EtherscanLink>
+        </div>
+        <div className="blockDetailTitleBlock">
+          <span className="blockDetailTitle">Removed Manager's Address: </span>
+          <EtherscanLink type="address">{props.details.arg}</EtherscanLink>
         </div>
       </div>
     );

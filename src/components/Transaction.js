@@ -157,6 +157,7 @@ const Transaction = (props) => {
               className="input transaction-textinput"
               value={formValue}
               required
+              style={{ fontFamily: "Inter", fontWeight: "600" }}
               onChange={(e) => setFormValue(e.target.value)}
             />
           </div>
@@ -171,6 +172,7 @@ const Transaction = (props) => {
                 className="input transaction-textinput"
                 required
                 value={recipientAddress}
+                style={{ fontFamily: "Inter", fontWeight: "600" }}
                 onChange={(e) => setRecipientAddress(e.target.value)}
               />
             </div>
@@ -181,6 +183,7 @@ const Transaction = (props) => {
                 placeholder="Purpose of the transaction"
                 className="input transaction-textinput"
                 required
+                style={{ fontFamily: "Inter", fontWeight: "600" }}
                 value={fundPurpose}
                 onChange={(e) => setFundPurpose(e.target.value)}
               />
@@ -189,7 +192,10 @@ const Transaction = (props) => {
         )}
         <div className="transaction-container4">
           <span className="transaction-text2">{props.account1}</span>
-          <div className="transaction-container5">
+          <div
+            className="transaction-container5"
+            style={{ fontFamily: "Inter", fontWeight: "500" }}
+          >
             {hasMetamask ? (
               isConnected ? (
                 `Connected to wallet with address ${signer?.address}`
@@ -197,6 +203,7 @@ const Transaction = (props) => {
                 <button
                   type="button"
                   className="button transaction-button"
+                  style={{ fontFamily: "Inter", fontWeight: "700" }}
                   onClick={async () => await connect()}
                 >
                   {props.connectButton}
@@ -211,6 +218,7 @@ const Transaction = (props) => {
           <button
             type="button"
             className="button transaction-button1"
+            style={{ fontFamily: "Inter", fontWeight: "700" }}
             onClick={() => {
               if (hasMetamask && isConnected) {
                 setTxProgress({ status: "Waiting", hash: null });
@@ -232,19 +240,34 @@ const Transaction = (props) => {
           </button>
         )}
         <div>
-          {txProgress.status == "Idle" ? (
+          {txProgress.status === "Idle" ? (
             <div></div>
-          ) : txProgress.status == "Waiting" ? (
-            <div>Waiting for transaction...</div>
-          ) : txProgress.status == "Done" ? (
-            <div>
+          ) : txProgress.status === "Waiting" ? (
+            <div style={{ fontFamily: "Inter", fontWeight: "600" }}>
+              Waiting for transaction...
+            </div>
+          ) : txProgress.status === "Done" ? (
+            <div
+              style={{
+                fontFamily: "Inter",
+                fontWeight: "600",
+                wordWrap: "break-word", // CSS2 property to break the words at the end of the line.
+                overflowWrap: "break-word", // CSS3 property to break the word to prevent overflow.
+              }}
+            >
               Transaction completed!{" "}
-              <Link
-                target="_blank"
-                href={`https://sepolia.etherscan.io/tx/${txProgress.hash}`}
-              >
-                {txProgress.hash}
-              </Link>
+              <div>
+                {"Hash: "}
+                <Link
+                  target="_blank"
+                  href={`https://sepolia.etherscan.io/tx/${txProgress.hash}`}
+                  style={{
+                    wordBreak: "break-all", // CSS3 property to break the words at any character to prevent overflow.
+                  }}
+                >
+                  {txProgress.hash}
+                </Link>
+              </div>
             </div>
           ) : (
             <div>Transaction failed!</div>

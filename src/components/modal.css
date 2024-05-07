@@ -20,6 +20,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    font-family: Inter;
+    font-weight: 700;
 }
 
   .modal-content {
