@@ -16,7 +16,7 @@ body {
   font-size: 24px;
   display: flex;
   flex-direction: column;
-  align-items: start;
+  align-items: flex-start;
 }
 
 .mag {
@@ -56,4 +56,37 @@ body {
 
 .login-button button:hover {
   background-color: #ddd;
+}
+
+.etherscan_link{
+  color: #ca047b;
+  transition: all 0.2s ease-in-out;
+}
+.etherscan_link:hover{
+  color: #ff47b6;
+}
+
+.transactionTitle{
+  font-size: 20px;
+  font-weight:700;
+  text-decoration:underline;
+}
+
+.transactionTitleBlock{
+  margin-bottom: 10px;
+}
+
+.blockDetailTitle{
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.blockDetailTitleBlock{
+  margin: 5px 0px
+}
+
+.back {
+  margin-right: 25px;
+  cursor:pointer;
+  display: inline;
 }

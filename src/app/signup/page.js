@@ -6,7 +6,7 @@ import { useState } from "react";
 import styles from "../login/login.module.css";
 
 import { RegisterAPICall } from "@/axios";
-import { showErrorToast } from "@/utils/toast";
+import { showErrorToast, showSuccessToast } from "@/utils/toast";
 
 export default function Page() {
   const [name, setName] = useState("");

@@ -37,7 +37,7 @@ export default function Page() {
     <>
       <header className="headers">
         <div className="logo">
-          <Link href="/home" className="logo">
+          <Link href="/projects" className="logo">
             <span className="mag">FairFlow</span>
             <span className="black">Accounts</span>
           </Link>

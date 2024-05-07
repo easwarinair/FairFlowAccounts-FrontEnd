@@ -5,9 +5,11 @@ import "./styles.css";
 import { getProjects } from "@/axios";
 import { ethers } from "ethers";
 import { useRouter } from "next/navigation";
+import { useHistory } from "react-router-dom";
 import Link from "next/link";
 import LoginButton from "@/components/LoginButton";
 import { showErrorToast } from "@/utils/toast";
+import BackButton from "@/components/BackButton";
 import Transaction from "@/components/Transaction";
 import Modal from "@/components/Modal";
 
@@ -139,8 +141,9 @@ export default function Page(props) {
   return (
     <>
       <header className="headers">
+        <BackButton />
         <div className="logo">
-          <Link href="/home" className="logo">
+          <Link href="/projects" className="logo">
             <span className="mag">FairFlow</span>
             <span className="black">Accounts</span>
           </Link>

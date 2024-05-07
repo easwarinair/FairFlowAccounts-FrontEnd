@@ -5,26 +5,21 @@
 .header {
   background-color: white;
   display: flex;
-  justify-content: center;
   width: 100vw;
 }
 
-.back {
-  margin-right: 30px;
-}
-
 .header-container {
+  /* background-color: ; */
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 100px;
+  justify-content:space-evenly;
+  padding: 10px 25px;
   width: 100%;
 }
 
 .mag,
 .black {
   color: #ca047b;
-
   font-size: 30px;
   font-style: normal;
   font-weight: bolder;
@@ -38,7 +33,6 @@
 .search-bar {
   margin: 0 auto;
   width: 50%;
- 
   border: 2px solid #ccc;
   border-radius: 15px;
   overflow: hidden;
@@ -56,15 +50,25 @@ main {
   padding: 20px;
 }
 
-.project-title {
-  color: #000;
-  text-align: center;
-  margin-bottom: 50px;
+.dropdown-button {
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: #ca047b;
+  font-size: 24px;
+  display: block;
+  margin: 0 auto;
+  padding: 5px;
+  outline: none;
+}
 
-  font-size: 50px;
-  font-style: normal;
-  font-weight: 900;
-  line-height: normal;
+.project-description {
+  margin-left: 200px;
+  display: block;
+  max-height: none;
+  overflow: visible;
+  padding: 10px 0;
+  transition: all 0.3s ease-in-out;
 }
 
 .project-details-container {
@@ -73,6 +77,51 @@ main {
   align-items: center;
   width: 100%;
 }
+
+.parent-description-box{
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+}
+.description-box{
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.description-title{
+  font-family: Inter;
+  font-weight: 700;
+  font-size: 24px;
+  color: #ca047b;
+  margin-bottom: 5px;
+}
+.description{
+  font-family: Inter;
+  font-weight:500;
+  font-size: 24px;
+  color: black;
+  margin-bottom: 10px;
+  white-space: pre;
+  text-wrap:pretty;
+}
+
+.project-title-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.project-title {
+  color: #000;
+  text-align: center;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+}
+
 .project-details,
 .project-details_1 {
   display: flex;
@@ -86,7 +135,6 @@ main {
   flex: 1;
   text-align: center;
   color: #000;
-
   font-size: 22px;
   font-style: normal;
   font-weight: 900;
@@ -106,25 +154,36 @@ main {
 }
 
 .project_subheading {
+  display: inline;
   color: #000;
   font-size: 35px;
   font-style: normal;
   font-weight: 900;
   line-height: normal;
   margin-left: 80px;
-  margin-top: 40px;
 }
 
 
 .make-transactions-button {
+  display: inline;
   padding: 10px 20px;
   background-color: #ca047b; 
   color: white;
+  font-family: Inter;
+  font-size: 20px;
+  font-weight: 700;
+  max-width: 300px;
+  margin-right: 10px;
+  text-align: left;
   border: none;
-  border-radius: 5px;
+  border-radius: 15px;
   cursor: pointer;
-  margin-left: 20px; 
-  
+  margin-left: 20px;
+
+}
+
+svg {
+  margin-left: 10px;
 }
 
 .rectangle-container {
@@ -184,29 +243,41 @@ hr {
   padding: 0;
 }
 
-.transaction-details,
-.transaction-details_1 {
-  display: flex;
-  justify-content: space-between;
-  text-align: left;
-  margin-top: 20px;
+.transaction-table{
+  display: flex ;
+  justify-content: center;
+  margin-left: 80px;
 }
 
-.transaction-details span,
-.transaction-details_1 span {
-  flex: 1;
+
+.transaction-details {
   text-align: center;
-  color: #000;
-  font-size: 22px;
+  width: 100%;
+}
+
+table, th, td{
+  /* border: 1px solid; */
+  border-collapse:collapse;
+}
+
+th{
+  border-bottom: 2px solid rgba(183, 80, 142, 25%);
+  height: 75px;
+}
+
+td{
+  height: 50px;
+}
+
+th, td {
+  font-size: 24px;
   font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  border-right: 1px solid black;
+  font-weight:700;
 }
 
-.profile-link {
-  margin-left: 10px;
-  text-decoration: none;
-  color: #ca047b;
+.table-link-entry{
+  color:#ca047b;
+  display: block;
+  text-decoration: underline;
+  cursor:pointer;
 }
-

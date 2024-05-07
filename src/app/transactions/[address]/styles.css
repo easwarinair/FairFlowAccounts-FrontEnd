@@ -1,12 +1,12 @@
 .headers {
-  width: 99vw;
+  width: 100vw;
   box-sizing: border-box;
   text-align: center;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
-  padding: 10px 80px;
+  justify-content:start;
+  padding: 10px 40px;
 }
 .center {
   width: 100%;
@@ -36,6 +36,9 @@
   flex-wrap: wrap;
   gap: 40px;
 }
+.logoContainer {
+  font-size: 24px;
+}
 .logo {
   font-size: 24px;
 }
@@ -45,7 +48,7 @@
   font-size: 30px;
   font-style: normal;
   font-weight: 800;
-  line-height: normal;
+  line-height: normal; 
 }
 
 .black {
@@ -167,3 +170,4 @@ input {
   text-align: center; 
   z-index: 1000; 
 }
+
