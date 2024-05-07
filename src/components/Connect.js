@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react";
 import { Contract, ContractFactory, ethers } from "ethers";
 import { shortenText } from "@/utils/projectDetails";
+import { useRouter } from "next/navigation";
 import { data } from "@/constants/FairFlowData";
 import { deployContract } from "@/axios";
 
 const ConnectButton = ({ projectData }) => {
   const [isConnected, setIsConnected] = useState(false);
   const [connectedProvider, setConnectedProvider] = useState();
+  const [sendStatus, setSendStatus] = useState("false");
   const [signer, setSigner] = useState();
+  const router = useRouter();
 
   async function connect() {
     if (typeof window.ethereum !== "undefined") {
@@ -27,6 +30,7 @@ const ConnectButton = ({ projectData }) => {
   async function createProject() {
     console.log("Got Projects:", projectData.phases);
     console.log("Signer is: ", signer);
+    setSendStatus("processing");
     const abi = data.abi;
     const bin = data.bin;
     const contractFactory = new ContractFactory(abi, bin, signer);
@@ -48,20 +52,68 @@ const ConnectButton = ({ projectData }) => {
         txHash: tx.hash,
       });
       console.log("Added to database", res);
+      res ? setSendStatus("done") : setSendStatus("failed");
     } catch (error) {
       console.log("Error! Details: ", error);
+      setSendStatus("failed");
     }
+  }
+
+  function goHome() {
+    router.push(`/projects`);
   }
 
   return (
     <div>
       {isConnected ? (
         <div>
-          <p>{`Connected to Metamask wallet with address ${shortenText(signer.address, 12)}!`}</p>
-          <button onClick={createProject}>Create Project</button>
+          <p
+            style={{ marginBottom: "10px" }}
+          >{`Connected to Metamask wallet with address ${shortenText(signer.address, 12)}!`}</p>
+          <button
+            type="submit"
+            onClick={sendStatus === "false" ? createProject : goHome}
+            className="submitButton"
+            disabled={sendStatus === "processing"}
+            style={{ width: "100%" }}
+          >
+            {sendStatus === "false" ? (
+              "Create Project"
+            ) : sendStatus === "processing" ? (
+              "Processing..."
+            ) : sendStatus === "done" ? (
+              <>
+                Project Created
+                <br />
+                <br />
+                Go Home
+              </>
+            ) : sendStatus === "failed" ? (
+              <>
+                An error has occurred!
+                <br />
+                <br />
+                Go Home.
+              </>
+            ) : (
+              <>
+                An error has occurred!
+                <br />
+                <br />
+                Go Home.
+              </>
+            )}
+          </button>
         </div>
       ) : (
-        <button onClick={connect}>Connect Wallet</button>
+        <button
+          type="submit"
+          className="submitButton"
+          onClick={connect}
+          style={{ width: "100%" }}
+        >
+          Connect Wallet
+        </button>
       )}
     </div>
   );

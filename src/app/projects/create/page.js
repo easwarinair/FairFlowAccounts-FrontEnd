@@ -50,7 +50,7 @@ const CreateProject = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.header}>
-        <span className={styles.fairflow}>FairFlow </span>
+        <span className={styles.fairflow}>FairFlow</span>
         <span className={styles.accounts}>Accounts</span>
       </h1>
       <h2 className={styles.subheader}>Create a new project</h2>
@@ -65,6 +65,7 @@ const CreateProject = () => {
             value={project.title}
             onChange={handleInputChange}
             className={styles.input}
+            style={{ fontFamily: "Inter" }}
           />
         </label>
 
@@ -76,6 +77,7 @@ const CreateProject = () => {
             value={project.description}
             onChange={handleInputChange}
             className={styles.textarea}
+            style={{ fontFamily: "Inter" }}
           />
         </label>
         <div className={styles.phases}>
@@ -89,12 +91,17 @@ const CreateProject = () => {
               onChange={(e) => handlePhaseChange(index, e.target.value)}
               placeholder={`Phase #${index + 1}`}
               className={styles.input}
+              style={{ fontFamily: "Inter" }}
             />
           ))}
-          <button type="button" onClick={addPhase} className={styles.addButton}>
+          <button
+            type="button"
+            onClick={addPhase}
+            className={styles.addButton}
+            style={{ marginRight: "10px" }}
+          >
             +
           </button>
-          <div></div>
           {phaseCount > 1 ? (
             <button
               type="button"
@@ -117,12 +124,10 @@ const CreateProject = () => {
             value={project.cost}
             onChange={handleInputChange}
             className={styles.input}
+            style={{ fontFamily: "Inter" }}
           />
         </label>
         <ConnectButton projectData={project} />
-        <button type="submit" className={styles.submitButton}>
-          Submit
-        </button>
       </form>
     </div>
   );

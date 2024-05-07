@@ -13,13 +13,13 @@
   
   .fairflow {
     color: #CA047B; 
-    font-weight: bold;
+    font-weight:900;
     font-size: 40px;
   }
   
   .accounts {
     color: #000; 
-    font-weight: bold;
+    font-weight:900;
     font-size: 40px;
   }
   
@@ -80,17 +80,4 @@
     cursor: pointer;
   }
   
-  .submitButton {
-    background-color: #ca047b;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .submitButton:hover {
-    background-color: #cc0099;
-  }
   
