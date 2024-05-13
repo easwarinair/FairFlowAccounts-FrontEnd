@@ -20,7 +20,7 @@ export default function Page() {
       checkSignedIn();
       getProjects()
         .then((response) => {
-          console.log(response.data);
+          // console.log(response.data);
           setProjects(response.data);
           setLoading(false);
         })

@@ -51,7 +51,7 @@ const Transaction = (props) => {
   }
 
   function transactionSuccess(hash) {
-    console.log(`Transaction hash: ${hash}`);
+    // console.log(`Transaction hash: ${hash}`);
     if (hash) {
       setTxProgress({ status: "Done", hash: hash });
       showSuccessToast(`Funds sent successfully! Transaction hash is ${hash}`);
@@ -106,7 +106,7 @@ const Transaction = (props) => {
             ethers.parseEther(value),
             purpose
           );
-          console.log(tx);
+          // console.log(tx);
           await tx.wait();
           transactionSuccess(tx.hash);
         } catch (error) {

@@ -28,8 +28,8 @@ const ConnectButton = ({ projectData }) => {
   }
 
   async function createProject() {
-    console.log("Got Projects:", projectData.phases);
-    console.log("Signer is: ", signer);
+    // console.log("Got Projects:", projectData.phases);
+    // console.log("Signer is: ", signer);
     setSendStatus("processing");
     const abi = data.abi;
     const bin = data.bin;
@@ -41,17 +41,17 @@ const ConnectButton = ({ projectData }) => {
         ethers.parseEther(projectData.cost).toString(),
         projectData.phases
       );
-      console.log("Deploying...");
+      // console.log("Deploying...");
       const tx = await contract.deploymentTransaction();
       const txRec = await contract.deploymentTransaction().wait(1);
-      console.log("Transaction response: ", tx, "Transaction Receipt: ", txRec);
-      console.log(tx.hash, txRec.contractAddress);
+      // console.log("Transaction response: ", tx, "Transaction Receipt: ", txRec);
+      // console.log(tx.hash, txRec.contractAddress);
       const res = await deployContract({
         title: projectData.title,
         contractAddress: txRec.contractAddress,
         txHash: tx.hash,
       });
-      console.log("Added to database", res);
+      // console.log("Added to database", res);
       res ? setSendStatus("done") : setSendStatus("failed");
     } catch (error) {
       console.log("Error! Details: ", error);

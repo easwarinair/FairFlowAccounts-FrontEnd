@@ -27,7 +27,7 @@ export const UserProvider = ({ children }) => {
 
   const checkSignedIn = async () => {
     const res = await getUserData();
-    console.log(res);
+    // console.log(res);
     if (res)
       setSignedIn({
         status: true,

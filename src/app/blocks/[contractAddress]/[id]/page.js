@@ -17,7 +17,7 @@ export default function Page(props) {
       try {
         const txs = JSON.parse(localStorage.getItem("txs"));
         if (txs) {
-          console.log("Got transactions:", txs[id - 1]);
+          // console.log("Got transactions:", txs[id - 1]);
           setTxs(txs[id - 1]);
         }
       } catch (error) {}

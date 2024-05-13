@@ -40,7 +40,7 @@ const CreateProject = () => {
 
   const submitProject = (e) => {
     e.preventDefault();
-    console.log(project);
+    // console.log(project);
   };
 
   async function deployContract() {

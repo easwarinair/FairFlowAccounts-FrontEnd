@@ -59,7 +59,7 @@ export default function Page() {
         const { data } = response;
 
         if (data) {
-          console.log("setting up....", data.result.title);
+          // console.log("setting up....", data.result.title);
           setProjectTitle(data.result.title);
           setProjectDescription(data.result.description);
           setBlockCount(data.blockCount);
@@ -94,7 +94,7 @@ export default function Page() {
   };
 
   const renderTransactions = () => {
-    console.log(transactions);
+    // console.log(transactions);
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>

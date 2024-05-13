@@ -26,7 +26,7 @@ async function deployContract(
     fundsRequired,
     projectPhases
   );
-  console.log("Deploying contract...");
+  // console.log("Deploying contract...");
   const response = await contract.waitForDeployment();
   const tx = await contract.deploymentTransaction();
   const txRec = await contract.deploymentTransaction().wait(1);

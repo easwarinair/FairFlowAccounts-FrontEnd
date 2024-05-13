@@ -75,7 +75,7 @@ export default function Page(props) {
   };
 
   const renderTransactions = () => {
-    console.log(transactions);
+    // console.log(transactions);
     return Array.from({ length: blockCount }, (_, i) => (
       <div key={i} className="transaction-details_1">
         <span>{i + 1}</span>
