@@ -12,112 +12,113 @@ import { showErrorToast } from "@/utils/toast";
 import BackButton from "@/components/BackButton";
 import Transaction from "@/components/Transaction";
 import Modal from "@/components/Modal";
+import { useUserContext } from "@/context/UserContext";
 
 export default function Page(props) {
   const [transactions, setTransactions] = useState([]);
   const [contractBalance, setContractBalance] = useState(undefined);
+  const { signedIn, checkSignedIn } = useUserContext();
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTransaction, setCurrentTransaction] = useState({});
   const contractAddress = props.params.address;
   const route = useRouter();
 
-  useEffect(() => {
-    function getTransactions(authLevel) {
-      const defaultTransactions = [
-        {
-          title: "Fund the project",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Fund the project",
-            textinputPlaceholder: "1",
-            inputLabel: "Enter the amount (in ETH)",
-            connectButton: "Connect Wallet",
-            sendButton: "Fund project",
-            showInput: true,
-            showButton: true,
-          },
+  function getTransactions(authLevel) {
+    const defaultTransactions = [
+      {
+        title: "Fund the project",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Fund the project",
+          textinputPlaceholder: "1",
+          inputLabel: "Enter the amount (in ETH)",
+          connectButton: "Connect Wallet",
+          sendButton: "Fund project",
+          showInput: true,
+          showButton: true,
         },
-        {
-          title: "Add an update to current phase",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Add an update to current phase",
-            textinputPlaceholder: "Describe the update",
-            inputLabel: "Update",
-            connectButton: "Connect Wallet",
-            sendButton: "Submit Update",
-            showInput: true,
-            showButton: true,
-          },
+      },
+      {
+        title: "Add an update to current phase",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Add an update to current phase",
+          textinputPlaceholder: "Describe the update",
+          inputLabel: "Update",
+          connectButton: "Connect Wallet",
+          sendButton: "Submit Update",
+          showInput: true,
+          showButton: true,
         },
-        {
-          title: "Mark the current phase as completed",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Mark the current phase as completed",
-            connectButton: "Connect Wallet",
-            sendButton: "Complete Phase",
-            showInput: false,
-            showButton: true,
-          },
+      },
+      {
+        title: "Mark the current phase as completed",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Mark the current phase as completed",
+          connectButton: "Connect Wallet",
+          sendButton: "Complete Phase",
+          showInput: false,
+          showButton: true,
         },
-        {
-          title: "Send funds outside the project",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Send funds outside the project",
-            textinputPlaceholder: "Amount to send",
-            inputLabel: "Amount in ETH",
-            connectButton: "Connect Wallet",
-            sendButton: "Send Funds",
-            showInput: true,
-            showButton: true,
-          },
+      },
+      {
+        title: "Send funds outside the project",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Send funds outside the project",
+          textinputPlaceholder: "Amount to send",
+          inputLabel: "Amount in ETH",
+          connectButton: "Connect Wallet",
+          sendButton: "Send Funds",
+          showInput: true,
+          showButton: true,
         },
-      ];
+      },
+    ];
 
-      const adminTransactions = [
-        {
-          title: "Add a manager",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Add a manager",
-            textinputPlaceholder: "Manager's Wallet Address",
-            inputLabel: "Address",
-            connectButton: "Connect Wallet",
-            sendButton: "Add Manager",
-            showInput: true,
-            showButton: true,
-          },
+    const adminTransactions = [
+      {
+        title: "Add a manager",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Add a manager",
+          textinputPlaceholder: "Manager's Wallet Address",
+          inputLabel: "Address",
+          connectButton: "Connect Wallet",
+          sendButton: "Add Manager",
+          showInput: true,
+          showButton: true,
         },
-        {
-          title: "Remove a manager",
-          details: {
-            contractAddress: contractAddress,
-            txTitle: "Remove a manager",
-            textinputPlaceholder: "Manager's Wallet Address",
-            inputLabel: "Address",
-            connectButton: "Connect Wallet",
-            sendButton: "Remove Manager",
-            showInput: true,
-            showButton: true,
-          },
+      },
+      {
+        title: "Remove a manager",
+        details: {
+          contractAddress: contractAddress,
+          txTitle: "Remove a manager",
+          textinputPlaceholder: "Manager's Wallet Address",
+          inputLabel: "Address",
+          connectButton: "Connect Wallet",
+          sendButton: "Remove Manager",
+          showInput: true,
+          showButton: true,
         },
-      ];
+      },
+    ];
 
-      if (authLevel == 1) {
-        setTransactions(defaultTransactions);
-      } else if (authLevel == 0) {
-        const transactions = defaultTransactions.concat(adminTransactions);
-        setTransactions(transactions);
-      }
+    if (authLevel == 1) {
+      setTransactions(defaultTransactions);
+    } else if (authLevel == 0) {
+      const transactions = defaultTransactions.concat(adminTransactions);
+      setTransactions(transactions);
     }
-    getTransactions(0);
-  }, []);
+  }
 
   useEffect(() => {
     getBalance();
+    checkSignedIn();
+    getTransactions(signedIn.authLevel);
   }, []);
   const handleTransactionClick = (transaction) => {
     setCurrentTransaction(transaction.details);
