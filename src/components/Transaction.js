@@ -106,6 +106,7 @@ const Transaction = (props) => {
             ethers.parseEther(value),
             purpose
           );
+          console.log(tx);
           await tx.wait();
           transactionSuccess(tx.hash);
         } catch (error) {

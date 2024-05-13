@@ -16,6 +16,7 @@ import { showErrorToast } from "@/utils/toast";
 import BackButton from "@/components/BackButton";
 import { LinkIcon } from "@/constants/ExternalLink";
 import formatTimestamp from "@/utils/formatTimestamp";
+import { useUserContext } from "@/context/UserContext";
 
 export default function Page(props) {
   const router = useRouter();
@@ -28,6 +29,7 @@ export default function Page(props) {
   const { id, hash } = props.params;
   const [searchQuery, setSearchQuery] = useState("");
   const [txs, setTxs] = useState([]);
+  const { signedIn, checkSignedIn } = useUserContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,21 +38,22 @@ export default function Page(props) {
         if (!hash) return showErrorToast("No hash");
         const response = await getProjectDetails(id, hash);
         const data = response.data;
-        console.log(data);
+        // console.log(data);
         if (data) {
           setProjectTitle(data.projectDetails.title);
           setBlockCount(data.blockCount);
           setTransactions(data.transactions);
           setData(data);
           localStorage.setItem("txs", JSON.stringify(data.transactions));
+          checkSignedIn();
         } else {
           console.error("No project data");
           setError("No data found");
           showErrorToast("No data found");
         }
       } catch (err) {
-        console.error("Fetch error:", err);
-        showErrorToast(err.message || "Failed to fetch project data");
+        // console.error("Fetch error:", err);
+        // showErrorToast(err.message || "Failed to fetch project data");
         setError("Error while fetching data");
       }
     };
@@ -224,19 +227,18 @@ export default function Page(props) {
 
           <div className="transactions-header">
             <h3 className="project_subheading">Latest Transactions</h3>
-            {data[0] !== "false" ? (
-              <Button
-                onClick={() => {
-                  handleMakeTransactionClick(`${id}`);
-                }}
-                className="make-transactions-button"
-                endContent={<LinkIcon />}
-              >
-                Make Transactions
-              </Button>
-            ) : (
-              <div></div>
-            )}
+            {data[0] !== "false" &&
+              (signedIn.authLevel == 1 || signedIn.authLevel == 0) && (
+                <Button
+                  onClick={() => {
+                    handleMakeTransactionClick(`${id}`);
+                  }}
+                  className="make-transactions-button"
+                  endContent={<LinkIcon />}
+                >
+                  Make Transactions
+                </Button>
+              )}
           </div>
           <div className="rectangle-container">{renderBlocks()}</div>
           <div className="transaction-table">

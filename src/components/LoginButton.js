@@ -16,13 +16,13 @@ const LoginButton = () => {
     <div className="login-button">
       {signedIn.status ? (
         <>
-          <button onClick={() => router.push("/profile")}>
+          <button onClick={() => {}}>
             {signedIn?.data?.email.toLocaleUpperCase() || "PROFILE"}
           </button>
           <button onClick={handleLogout}>LOGOUT</button>
         </>
       ) : (
-        <button onClick={() => router.push("/login")}>Login</button>
+        <button onClick={() => router.push("/login")}>Admin Login</button>
       )}
     </div>
   );

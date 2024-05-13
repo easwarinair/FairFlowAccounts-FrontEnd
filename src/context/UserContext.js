@@ -3,7 +3,7 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import { useRouter } from "next/navigation";
 import { LogoutAPI, getUserDataAPI } from "@/axios";
-import { showErrorToast } from "@/utils/toast";
+import { showErrorToast, showSuccessToast } from "@/utils/toast";
 
 export const getUserData = async () => {
   try {
@@ -22,12 +22,21 @@ export const UserProvider = ({ children }) => {
     status: false,
     data: null,
     fetched: false,
+    authLevel: 2,
   });
 
   const checkSignedIn = async () => {
     const res = await getUserData();
-    if (res) setSignedIn({ status: true, data: res, fetched: true });
-    else setSignedIn({ status: false, data: null, fetched: true });
+    console.log(res);
+    if (res)
+      setSignedIn({
+        status: true,
+        data: res,
+        fetched: true,
+        authLevel: res.authLevel,
+      });
+    else
+      setSignedIn({ status: false, data: null, fetched: true, authLevel: 2 });
   };
 
   // useEffect(() => {
@@ -35,7 +44,7 @@ export const UserProvider = ({ children }) => {
   // }, []);
 
   const checkout = () =>
-    setSignedIn({ status: false, data: null, fetched: false });
+    setSignedIn({ status: false, data: null, fetched: false, authLevel: 2 });
 
   const router = useRouter();
   const showLogin = () => {
@@ -49,8 +58,10 @@ export const UserProvider = ({ children }) => {
     if (typeof window === "undefined") return;
     try {
       const res = await LogoutAPI();
+      // setSignedIn({ status: false, data: null, fetched: false, authLevel: 2 });
       if (res.status === 200) {
-        router.push("/login");
+        router.push("/projects");
+        showSuccessToast("Logged Out Successfully");
       } else {
         throw new Error(res.data.error || "Logout Error");
       }
