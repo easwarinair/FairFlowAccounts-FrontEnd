@@ -60,7 +60,7 @@ export const UserProvider = ({ children }) => {
       const res = await LogoutAPI();
       // setSignedIn({ status: false, data: null, fetched: false, authLevel: 2 });
       if (res.status === 200) {
-        router.push("/projects");
+        router.push("/login");
         showSuccessToast("Logged Out Successfully");
       } else {
         throw new Error(res.data.error || "Logout Error");
